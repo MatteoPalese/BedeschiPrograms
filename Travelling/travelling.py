@@ -5,7 +5,7 @@ I valori delle chiavi hanno un significato basato sulla posizione:
     - 0 = valore
     - 1 = unità di misura
     - 2 = formula di ricavo del valore (se è None, è un dato di input)
-    - 3 = caratteristica valore (valore input) o info aggiuntiva (controllo per verificare qualcosa)
+    - 3 = posizione nel file Excel 
 '''
 import math
 
@@ -30,7 +30,7 @@ E33 = 'Static friction factor'
 E34 = 'Fictitious friction factor'
 E35 = 'Friction factor to grip limit'
 E36 = 'Rail slope'
-E37 = 'Belts lenght on tripper'
+E37 = 'Belt\'s lenght on tripper'
 E38 = 'Lifting height on tripper'
 E39 = 'Max wind area during normal operation'
 E40 = 'Min wind area during traveling to parking'
@@ -55,20 +55,20 @@ E59 = 'Motor, clutch and gear box inertia'
 E62F62 = 'Friction force on rail during normal operation, travelling at c1'
 E63F63 = 'Friction force on rail during travelling at c2'
 E66F66 = 'Max wind force during normal operation (v1), travelling at c1'
-E67F67 = 'Wind force during travelling to parking position (v2), travelling at c2*'
+E67F67 = 'Wind force during travelling to parking position (v2), travelling at c2'
 E68 = 'Storm wind, out of service (v3), static condition'
 E71F71 = 'Force due to yard slope during normal operation, travelling at c1'
 E72F72 = 'Force due to yard slope during travelling at c2'
 E75F75 = 'Force for lifting material on tripper, travelling at c1'
-E78F78 = 'Friction force due to material on tripper'
-E81F81 = 'Friction force due to tripper idlers and belt'
-E84F84 = 'Force due to material digging, normal lateral digging force'
-E85F85 = 'Force due to material digging, abnormal lateral digging force'
+E78F78 = 'Friction force due to material on tripper, travelling at c1'
+E81F81 = 'Friction force due to tripper idlers and belt, travelling at c1'
+E84F84 = 'Force due to material digging, normal lateral digging force travelling at c1'
+E85F85 = 'Force due to material digging, abnormal lateral digging force travelling at c1'
 E88F88 = 'Acceleration force'
 E92F92G92H92 = 'Normal operation - stacking'
 E93F93G93H93 = 'Normal operation acceleration - stacking'
 E94F94G94H94 = 'Normal operation - reclaiming'
-E95F95G95H95 = 'Normal operation accelaration- reclaiming'
+E95F95G95H95 = 'Normal operation accelaration - reclaiming'
 E96F96G96H96 = 'Abnormal operation - reclaiming'
 E97F97G97H97 = 'Travelling to parking position with max wind'
 H98 = 'Total percentage'
@@ -79,9 +79,11 @@ D105 = 'Number of drive units'
 D106 = 'Power of each unit'
 D107 = 'Motor torque'
 D109 = 'Total installed power'
+F109 = 'VALUE_CHECK'
 D110 = 'Total motor torque'
 D111 = 'Ratio of installed power vs max absorbed power'
 D112 = 'Ratio of installed power vs RMS absorbed power'
+F112 = 'VALUE_CHECK'
 D115 = 'Service factor'
 D116 = 'Wheel diameter'
 D117 = 'Max travel speed'
@@ -101,6 +103,7 @@ D133 = 'Min traction force'
 D134 = 'Max allowed torque'
 D135 = 'Number of motorized wheel for each motor'
 D136 = 'Max wheel torque'
+F136 = 'VALUE_CHECK'
 D137 = 'Total number of driven wheel'
 D138 = 'Total number of wheel (for machine)'
 E143 = 'Equivalent mass of motor'
@@ -109,9 +112,6 @@ E145 = 'Equivalent mass of drives'
 D147 = 'Rated brake torque setting'
 D149 = 'Total brake force against witch the brake shall act during operation'
 D150 = 'Total brake force against witch the brake shall act during relocation'
-
-t_D152 = 'Braking forces with all drives installed' # possono servire i titoli per la stampa?
-
 D155 = 'Rolling friction assuming straight travelling, considering dead loading and encrustation'
 D156 = 'Braking torque per drive unit'
 D157 = 'Braking force per drive unit'
@@ -119,26 +119,23 @@ D158 = 'Total braking force per machine'
 D159 = 'Max traction under DL + LL'
 D160 = 'Total braking and friction force'
 D162 = 'Brake quotlent'
-
+G162 = 'VALUE_CHECK'
 D167 = 'Net deceleration force'
 D168 = 'Deleleration'
 D169 = 'Acceleration'
 D170 = 'Stopping time at c2 speed'
 D171 = 'Stopping distance'
-
 D175 = 'Net deceleration force'
 D176 = 'Deleleration'
 D177 = 'Acceleration'
 D178 = 'Stopping time at c2 speed'
 D179 = 'Stopping distance'
-
 D182 = 'Design deceleration time'
 D183 = 'Design acceleration at c2 speed'
 D184 = 'Net force'
 D185 = 'Total braking force considering the slope'
 D186 = 'Stopping distance, total braking force considering the slope'
 D187 = 'Minimum required torque per brake'
-
 D192 = 'Storm wind and slope force'
 D193 = 'Total braking force per machine with 2/3 of brakes in function'
 D194 = 'Max force for each rail clamp with 2/3 of brakes in function'
@@ -151,145 +148,168 @@ scelta = 0 # la scelta per il menù che si presenterà all'avvio del programma
 
 data = \
 {
-    E15: [None, 't', None],
-    E16: [None, 't', None],
-    E17: [None, 't', None],
-    E18: [None, 't', None],
+    E15: [None, 't', None, 'E15'],
+    E16: [None, 't', None, 'E16'],
+    E17: [None, 't', None, 'E17'],
+    E18: [None, 't', None, 'E18'],
     E20: [None, 't',
           'data[E15][0] + data[E16][0] + '
-          'data[E17][0] + data[E18][0]'],
+          'data[E17][0] + data[E18][0]',
+         'E20'],
     E21: [None, 't',
           'data[E15][0] + '
-          'data[E16][0]'],
-    E22: [None, 'km/h', None],
-    E23: [None, 'km/h', None],
-    E24: [None, 'km/h', None],
+          'data[E16][0]',
+         'E21'],
+    E22: [None, 'km/h', None, 'E22'],
+    E23: [None, 'km/h', None, 'E23'],
+    E24: [None, 'km/h', None, 'E24'],
     E25: [None, 'N/m²',
-          '(data[E22][0]/3.6)**2/16*9.81'],
+          '(data[E22][0]/3.6)**2/16*9.81',
+         'E25'],
     E26: [None, 'N/m²',
-          '(data[E23][0]/3.6)**2/16*9.81'],
+          '(data[E23][0]/3.6)**2/16*9.81',
+         'E26'],
     E27: [None, 'N/m²',
-          '(data[E24][0]/3.6)**2/16*9.81'],
+          '(data[E24][0]/3.6)**2/16*9.81',
+         'E27'],
 
-    E28: [None, 'm/min', None],
-    E29: [None, 'm/min', None],
-    E30: [None, 'm/min', None],
-    E31: [None, '', None], # no unità
-    E32: [None, '', None], # no unità
-    E33: [None, '', None], # no unità
-    E34: [None, '', None], # no unità
-    E35: [None, '', None], # no unità
-    E36: [None, '%', None],
-    E37: [None, 'm', None],
-    E38: [None, 'm', None],
-    E39: [None, 'm²', None],
-    E40: [None, 'm²', None],
-    E41: [None, 'kg', None],
-    E42: [None, 'm', None],
-    E43: [None, '', None], # no unità
-    E44: [None, '', None],
-    E45: [None, 'm', None],
-    E46: [None, '', None], # no unità
+    E28: [None, 'm/min', None, 'E28'],
+    E29: [None, 'm/min', None, 'E29'],
+    E30: [None, 'm/min', None, 'E30'],
+    E31: [None, '', None, 'E31'], 
+    E32: [None, '', None, 'E32'], 
+    E33: [None, '', None, 'E33'], 
+    E34: [None, '', None, 'E34'], 
+    E35: [None, '', None, 'E35'],
+    E36: [None, '%', None, 'E36'],
+    E37: [None, 'm', None, 'E37'],
+    E38: [None, 'm', None, 'E38'],
+    E39: [None, 'm²', None, 'E39'],
+    E40: [None, 'm²', None, 'E40'],
+    E41: [None, 'kg', None, 'E41'],
+    E42: [None, 'm', None, 'E42'],
+    E43: [None, '', None, 'E43'],
+    E44: [None, '', None, 'E44'],
+    E45: [None, 'm', None, 'E45'],
+    E46: [None, '', None, 'E46'], 
     E47: [None, 'kg/m',
-           'data[E41][0] * data[E43][0] / data[E42][0] + '
-           'data[E44][0] * data[E46][0] / data[E45][0]'],
-    E48: [None, 'kg/m', None],
-    E49: [None, 't/h', None],
-    E50: [None, 'm/s', None],
-    E51: [None, 't/m³', None],
+         'data[E41][0] * data[E43][0] / data[E42][0] + '
+         'data[E44][0] * data[E46][0] / data[E45][0]',
+         'E47'],
+    E48: [None, 'kg/m', None, 'E48'],
+    E49: [None, 't/h', None, 'E49'],
+    E50: [None, 'm/s', None, 'E50'],
+    E51: [None, 't/m³', None, 'E51'],
     E52: [None, 'kg/m',
-           'data[E49][0] / 3.6 / data[E51][0] / data[E50][0]'],
-    E53: [None, '', None], # no unità
-    E54: [None, 's', None],
+           'data[E49][0] / 3.6 / data[E51][0] / data[E50][0]',
+         'E52'],
+    E53: [None, '', None, 'E53'],
+    E54: [None, 's', None, 'E54'],
     E55: [None, 'm/s²',
-           'data[E29][0] / 60 / data[E54][0]'],
-    E56: [None, 'kg m²', None],
-    E58: [None, 'kg m²', None],
-    E59: [None, 'kg m²', None],
+           'data[E29][0] / 60 / data[E54][0]',
+         'E55'],
+    E56: [None, 'kg m²', None, 'E56'],
+    E58: [None, 'kg m²', None, 'E58'],
+    E59: [None, 'kg m²', None, 'E59'],
 
     E62F62: [[None, None], ['kN', 'kW'],
              ['9.81 * data[E20][0] * data[E32][0]',
-              'data[E62F62][0][0] * data[E28][0] / 60 / data[E53][0]']],
+              'data[E62F62][0][0] * data[E28][0] / 60 / data[E53][0]'],
+             ['E62', 'F62']],
     E63F63: [[None, None], ['kN', 'kW'],
              ['9.81 * data[E21][0] * data[E32][0]',
               'data[E63F63][0][0] * data[E29][0] / 60 / data[E53][0]']],
+             ['E63', 'F63']],
 
     E66F66: [[None, None], ['kN', 'kW'],
              ['data[E31][0] * data[E25][0] * data[E39][0] / 1000',
-              'data[E66F66][0][0] * data[E28][0] / 60 / data[E53][0]']],
+              'data[E66F66][0][0] * data[E28][0] / 60 / data[E53][0]'],
+             ['E66', 'F66']],
     E67F67: [[None, None], ['kN', 'kW'],
              ['data[E31][0] * data[E26][0] * data[E40][0] / 1000',
-              'data[E67F67][0][0] * data[E30][0] / 60 / data[E53][0]']],
+              'data[E67F67][0][0] * data[E30][0] / 60 / data[E53][0]'],
+             ['E67', 'F67']],
     E68: [None, 'kN',
-          'data[E31][0] * data[E27][0] * data[E40][0] / 1000'],
+          'data[E31][0] * data[E27][0] * data[E40][0] / 1000',
+          'E68'],
 
     E71F71: [[None, None], ['kN', 'kW'],
              ['9.81 * data[E20][0] * data[E36][0]',
-              'data[E71F71][0][0] * data[E28][0] / 60 / data[E53][0]']],
+              'data[E71F71][0][0] * data[E28][0] / 60 / data[E53][0]'],
+             ['E71', 'F71']],
     E72F72: [[None, None], ['kN', 'kW'],
              ['data[E21][0] * data[E36][0] * 9.81',
-              'data[E72F72][0][0] * data[E29][0] / 60 / data[E53][0]']],
+              'data[E72F72][0][0] * data[E29][0] / 60 / data[E53][0]'],
+             ['E72', 'F72']],
 
     E75F75: [[None, None], ['kN', 'kW'],
-         ['9.81 * data[E38][0] * data[E52][0] / 1000',
-          'data[E75F75][0][0] * data[E28][0] / 60 / data[E53][0]']],
+             ['9.81 * data[E38][0] * data[E52][0] / 1000',
+              'data[E75F75][0][0] * data[E28][0] / 60 / data[E53][0]'],
+             ['E75', 'F75']],
 
     E78F78: [[None, None], ['kN', 'kW'],
-         ['9.81 * data[E52][0] * data[E37][0] * data[E34][0] / 1000',
-          'data[E78F78][0][0] * data[E28][0] / 60 / data[E53][0]']],
+             ['9.81 * data[E52][0] * data[E37][0] * data[E34][0] / 1000',
+              'data[E78F78][0][0] * data[E28][0] / 60 / data[E53][0]'],
+             ['E78', 'F78']],
 
     E81F81: [[None, None], ['kN', 'kW'],
-         ['9.81 * data[E37][0] * (data[E48][0] + data[E47][0]) * data[E34][0] / 1000',
-          'data[E81F81][0][0] * data[E28][0] / 60 / data[E53][0]']],
+             ['9.81 * data[E37][0] * (data[E48][0] + data[E47][0]) * data[E34][0] / 1000',
+              'data[E81F81][0][0] * data[E28][0] / 60 / data[E53][0]'],
+             ['E81', 'F81']],
 
     E84F84: [[None, None], ['kN', 'kW'],
-             [None, 'data[E84F84][0][0] * data[E28][0] / 60 / data[E53][0]']],
+             [None, 'data[E84F84][0][0] * data[E28][0] / 60 / data[E53][0]'],
+             ['E84', 'F84']],
     E85F85: [[None, None], ['kN', 'kW'],
-             [None, 'data[E85F85][0][0] * data[E28][0] / 60 / data[E53][0]']],
+             [None, 'data[E85F85][0][0] * data[E28][0] / 60 / data[E53][0]'],
+             ['E85', 'F85']],
 
     E88F88: [[None, None], ['kN', 'kW'],
              ['data[E20][0] * data[E55][0]',
-              '(data[E88F88][0][0] * data[E28][0] / 60) / data[E53][0]']],
+              '(data[E88F88][0][0] * data[E28][0] / 60) / data[E53][0]'],
+             ['E88', 'F88']],
 
     E92F92G92H92: [[None, None, None, None], ['kN', 'kW', 'kW', '%'],
                    ['data[E62F62][0][0] + data[E66F66][0][0] + data[E71F71][0][0] + data[E75F75][0][0] + data[E78F78][0][0] + data[E81F81][0][0]',
                     'data[E62F62][0][1] + data[E66F66][0][1] + data[E71F71][0][1] + data[E75F75][0][1] + data[E78F78][0][1] + data[E81F81][0][1]',
                     'data[E92F92G92H92][0][1] / data[D105][0]',
-                    None]],
+                    None], 
+                    ['E92', 'F92', 'G92', 'H92']],
     E93F93G93H93: [[None, None, None, None], ['kN', 'kW', 'kW', '%'],
-                   [
-                   'data[E62F62][0][0] + data[E66F66][0][0] + data[E71F71][0][0] + data[E75F75][0][0] + data[E78F78][0][0] + data[E81F81][0][0] + data[E88F88][0][0]',
+                   ['data[E62F62][0][0] + data[E66F66][0][0] + data[E71F71][0][0] + data[E75F75][0][0] + data[E78F78][0][0] + data[E81F81][0][0] + data[E88F88][0][0]',
                    'data[E62F62][0][1] + data[E66F66][0][1] + data[E71F71][0][1] + data[E75F75][0][1] + data[E78F78][0][1] + data[E81F81][0][1] + data[E88F88][0][1]',
                    'data[E93F93G93H93][0][1] / data[D105][0]',
-                   None]],
+                   None], 
+                   ['E93', 'F93', 'G93', 'H93']],
     E94F94G94H94: [[None, None, None, None], ['kN', 'kW', 'kW', '%'],
-                   [
-                   'data[E62F62][0][0] + data[E66F66][0][0] + data[E71F71][0][0] + data[E84F84][0][0]',
+                   ['data[E62F62][0][0] + data[E66F66][0][0] + data[E71F71][0][0] + data[E84F84][0][0]',
                    'data[E62F62][0][1] + data[E66F66][0][1] + data[E71F71][0][1] + data[E84F84][0][1]',
                    'data[E94F94G94H94][0][1] / data[D105][0]',
-                   None]],
+                   None], 
+                   ['E94', 'F94', 'G94', 'H94']],
     E95F95G95H95: [[None, None, None, None], ['kN', 'kW', 'kW', '%'],
-                   [
-                   'data[E62F62][0][0] + data[E66F66][0][0] + data[E71F71][0][0] + data[E84F84][0][0] + data[E88F88][0][0]',
+                   ['data[E62F62][0][0] + data[E66F66][0][0] + data[E71F71][0][0] + data[E84F84][0][0] + data[E88F88][0][0]',
                    'data[E62F62][0][1] + data[E66F66][0][1] + data[E71F71][0][1] + data[E84F84][0][1] + data[E88F88][0][1]',
                    'data[E95F95G95H95][0][1] / data[D105][0]',
-                   None]],
+                   None], 
+                   ['E95', 'F95', 'G95', 'H95']],
     E96F96G96H96: [[None, None, None, None], ['kN', 'kW', 'kW', '%'],
-                   [
-                   'data[E62F62][0][0] + data[E66F66][0][0] + data[E71F71][0][0] + data[E85F85][0][0]',
+                   ['data[E62F62][0][0] + data[E66F66][0][0] + data[E71F71][0][0] + data[E85F85][0][0]',
                    'data[E62F62][0][1] + data[E66F66][0][1] + data[E71F71][0][1] + data[E85F85][0][1]',
                    'data[E96F96G96H96][0][1] / data[D105][0]',
-                       None]],
+                    None], 
+                   ['E96', 'F96', 'G96', 'H96']],
     E97F97G97H97: [[None, None, None, None], ['kN', 'kW', 'kW', '%'],
-                   [
-                    'data[E63F63][0][0] + data[E67F67][0][0] + data[E72F72][0][0] + data[E88F88][0][0]',
-                    'data[E63F63][0][1] + data[E67F67][0][1] + data[E72F72][0][1] + data[E88F88][0][1]',
-                    'data[E97F97G97H97][0][1] / data[D105][0]',
-                       None]],
+                   ['data[E63F63][0][0] + data[E67F67][0][0] + data[E72F72][0][0] + data[E88F88][0][0]',
+                   'data[E63F63][0][1] + data[E67F67][0][1] + data[E72F72][0][1] + data[E88F88][0][1]',
+                   'data[E97F97G97H97][0][1] / data[D105][0]',
+                    None], 
+                   ['E97', 'F97', 'G97', 'H97']],
     H98: [None, '%',
-           'sum([data[E92F92G92H92][0][3], data[E93F93G93H93][0][3],'
-           'data[E94F94G94H94][0][3]), data[E95F95G95H95][0][3],'
-           'data[E96F96G96H96][0][3], data[E97F97G97H97][0][3]])'],
+         'sum([data[E92F92G92H92][0][3], data[E93F93G93H93][0][3],'
+         'data[E94F94G94H94][0][3]), data[E95F95G95H95][0][3],'
+         'data[E96F96G96H96][0][3], data[E97F97G97H97][0][3]])',
+         'H98'],
 
     D99: [None, 'kW',
           'math.sqrt(('
@@ -299,145 +319,205 @@ data = \
           'data[E95F95G95H95][0][1] ** 2 * data[E95F95G95H95][0][3] +'
           'data[E96F96G96H96][0][1] ** 2 * data[E96F96G96H96][0][3] +'
           'data[E97F97G97H97][0][1] ** 2 * data[E97F97G97H97][0][3] +) /'
-          'data[H98][0])'],
+          'data[H98][0])', 
+          'D99'],
     D100: [None, 'kW',
            'min([data[E92F92G92H92][0][1], data[E93F93G93H93][0][1],'
            'data[E94F94G94H94][0][1]), data[E95F95G95H95][0][1],'
-           'data[E96F96G96H96][0][1], data[E97F97G97H97][0][1]])'],
+           'data[E96F96G96H96][0][1], data[E97F97G97H97][0][1]])',
+           'D100'],
     D101: [None, 'kW',
            'max([data[E92F92G92H92][0][1], data[E93F93G93H93][0][1],'
            'data[E94F94G94H94][0][1]), data[E95F95G95H95][0][1],'
-           'data[E96F96G96H96][0][1], data[E97F97G97H97][0][1]])'],
+           'data[E96F96G96H96][0][1], data[E97F97G97H97][0][1]])',
+           'D101'],
 
-    D105: [None, '', None],
-    D106: [None, 'kW', None],
-    D107: [None, 'N m',
-           'data[106][0] * 1000 / (data[D118][0] / (60 / 6.28))'],
+    D105: [None, '', None, 'D105'],
+    D106: [None, 'kW', None, 'D106'],
+    D107: [None, 'Nm',
+           'data[106][0] * 1000 / (data[D118][0] / (60 / 6.28))',
+           'D107'],
 
     D109: [None, 'kW',
            'data[D105][0] * data[D106][0]',
-           '"verified" if data[D109][0] > data[D101][0] else "not verified"'],
-    D110: [None, 'N m',
-           'data[D109][0] * 1000 / (data[D118][0] * 6.28 / 60)'],
+           'D109'],
+    
+    F109: [None, '', 
+           '"verified" if data[D109][0] > data[D101][0] else "not verified"',
+           'F109'],
+
+    D110: [None, 'Nm',
+           'data[D109][0] * 1000 / (data[D118][0] * 6.28 / 60)',
+           'D110'],
     D111: [None, '',
-           'data[D109][0] / data[D101][0]'],
+           'data[D109][0] / data[D101][0]',
+           'D111'],
     D112: [None, '',
            'data[D109][0] / data[D99][0]',
-           '"OK" if data[D112][0] > 1 else "NOT OK"'],
-
-    D115: [None, '', None],
-    D116: [None, 'm', None],
-    D117: [None, 'm/min', # COPIA DI E29, VALUTARE SE ELIMINARE
-           'data[E29][0]'],
-    D118: [None, 'rpm', None],
+           'D112'],
+    F112: [None, '',
+           '"OK" if data[D112][0] > 1 else "NOT OK"',
+           'F112'],
+    D115: [None, '', None, 'D115'],
+    D116: [None, 'm', None, 'D116'],
+    D117: [None, 'm/min',
+           'data[E29][0]',
+           'D117'],
+    D118: [None, 'rpm', None, 'D118'],
     D119: [None, 'rpm',
-           'data[D117][0] * 2 / (data[D116][0] * 2 * 3.14)'],
-    D120: [None, '', None],
+           'data[D117][0] * 2 / (data[D116][0] * 2 * 3.14)',
+           'D119'],
+    D120: [None, '', None, 'D120'],
     D121: [None, 'kW',
-           'data[D106][0] * data[D115][0]'],
+           'data[D106][0] * data[D115][0]',
+           'D121'],
     D122: [None, '',
-           'data[D118][0] / (data[D119][0] * data[D120][0])'],
+           'data[D118][0] / (data[D119][0] * data[D120][0])',
+           'D122'],
     D123: [None, 'Nm',
-           'data[D107][0] * data[D122][0] * data[D115][0]'],
+           'data[D107][0] * data[D122][0] * data[D115][0]',
+           'D123'],
 
     D127: [None, 'm',
-           'data[D116][0]'], # COPIA DI D116, VALUTARE SE ELIMINARE
-    D128: [None, 't', None],
+           'data[D116][0]',
+           'D127'],
+    D128: [None, 't', None, 'D128'],
     D129: [None, 'kN',
-           'data[D128][0] * 9.8121'],
-    D130: [None, '', None],
+           'data[D128][0] * 9.8121',
+           'D129'],
+    D130: [None, '', None, 'D130'],
 
     D131: [None, 'Nm',
-           'data[D130][0] * 60 * 1000 * data[D106][0] / (data[D118][0] * 2 * 3.14)'],
+           'data[D130][0] * 60 * 1000 * data[D106][0] / (data[D118][0] * 2 * 3.14)',
+           'D131'],
     D132: [None, '',
-           'data[D122][0] * data[D120][0]'],
+           'data[D122][0] * data[D120][0]',
+           'D132'],
     D133: [None, 'kN',
-           'data[E35][0] * data[D129][0]'],
+           'data[E35][0] * data[D129][0]',
+           'D133'],
     D134: [None, 'Nm',
-           'data[D133][0] * data[D127][0] * 1000 / 2'],
-    D135: [None, '', None],
+           'data[D133][0] * data[D127][0] * 1000 / 2',
+           'D134'],
+    D135: [None, '', None, 'D135'],
     D136: [None, 'Nm',
            '(data[D131][0] * data[D132][0] / data[D135][0]) * data[E53][0]',
-           '"WHEEL/RAIL GRIP VERIFIED" if data[D134][0] > data[D136][0] else "SKIDDING SLIP"'],
+           'D136'],
+    F136: [None, '', 
+           '"WHEEL/RAIL GRIP VERIFIED" if data[D134][0] > data[D136][0] else "SKIDDING SLIP"',
+           'F136'],
     D137: [None, '',
-           'data[D135][0] * data[D105][0]'],
-    D138: [None, '', None],
+           'data[D135][0] * data[D105][0]',
+           'D137'],
+    D138: [None, '', None, 'D138'],
 
     E143: [None, 't',
-           'data[D105][0] * data[E59][0] * data[D122][0] ** 2 * 4 / data[D116][0] ** 2 / 1000'],
+           'data[D105][0] * data[E59][0] * data[D122][0] ** 2 * 4 / data[D116][0] ** 2 / 1000',
+           'E143'],
     E144: [None, 't',
-           'data[D138][0] * data[E58][0] * 4 / data[D116][0] ** 2 / 1000'],
+           'data[D138][0] * data[E58][0] * 4 / data[D116][0] ** 2 / 1000',
+           'E144'],
     E145: [None, 't',
-           'data[E143][0] + data[E144][0]'],
+           'data[E143][0] + data[E144][0]',
+           'E145'],
 
-    D147: [None, 'Nm', None],
+    D147: [None, 'Nm', None, 'D147'],
 
     D149: [None, 'kN',
-           'data[E66][0] + data[E71][0]'],
+           'data[E66][0] + data[E71][0]',
+           'D149'],
     D150: [None, 'kN',
-           'data[E67][0] + data[E72][0]'],
+           'data[E67][0] + data[E72][0]',
+           'D150'],
 
     D155: [None, 'kN',
-           'data[E21][0] * data[E32][0] * 9.81'],
+           'data[E21][0] * data[E32][0] * 9.81',
+           'D155'],
     D156: [None, 'kNm',
-           'data[D147][0] * data[D122][0] / 1000'],
+           'data[D147][0] * data[D122][0] / 1000',
+           'D156'],
     D157: [None, 'kN',
-           'data[D156][0] * 2 / data[D116][0]'],
+           'data[D156][0] * 2 / data[D116][0]',
+           'D157'],
     D158: [None, 'kN',
-           'data[D157][0] * data[D105][0]'],
+           'data[D157][0] * data[D105][0]',
+           'D158'],
     D159: [None, 'kN',
-           'data[E35][0] * data[E15][0] * 9.81 * data[D137][0] / data[D138][0]'],
+           'data[E35][0] * data[E15][0] * 9.81 * data[D137][0] / data[D138][0]',
+           'D159'],
     D160: [None, 'kN',
-           'min([data[D158][0], data[D159][0]]) + data[D155][0]'],
+           'min([data[D158][0], data[D159][0]]) + data[D155][0]',
+           'D160'],
 
     D162: [None, '',
            'data[D150][0] / data[D160][0],',
-           '"OK" if data[D162][0] < 1 else "NOT OK"'],
+           'D162'],
+    G162: [None, '',
+           '"OK" if data[D162][0] < 1 else "NOT OK"',
+           'G162'],
 
     D167: [None, 'kN', 
-           'data[D160][0] - [data[D150][0]'],
+           'data[D160][0] - [data[D150][0]',
+           'D167'],
     D168: [None, 't', 
-          '[data[E145][0] + [data[E20][0]'],
+          '[data[E145][0] + [data[E20][0]',
+           'D168'],
     D169: [None, 'm/s²', 
-           'data[E167][0] / [data[D168][0]'],
+           'data[E167][0] / [data[D168][0]',
+           'D169'],
     D170: [None, 's', 
-           'data[E29][0] / 60 / data[D169][0]'],
+           'data[E29][0] / 60 / data[D169][0]',
+           'D170'],
     D171: [None, 'm', 
-          '0.5 * data[D169][0] * data[D170][0] ** 2'],
+          '0.5 * data[D169][0] * data[D170][0] ** 2',
+           'D171'],
 
     D175: [None, 'kN', 
-           'data[D160][0] - [data[E72][0]'],
+           'data[D160][0] - [data[E72][0]',
+           'D175'],
     D176: [None, 't', 
-          '[data[E145][0] + [data[E20][0]'],
+          '[data[E145][0] + [data[E20][0]',
+           'D176'],
     D177: [None, 'm/s²', 
-           'data[D175][0] / [data[D176][0]'],
+           'data[D175][0] / [data[D176][0]',
+           'D177'],
     D178: [None, 's', 
-           'data[D175][0] / data[D176][0]'],
+           'data[D175][0] / data[D176][0]',
+           'D178'],
     D179: [None, 'm', 
-          '0.5 * data[D177][0] * data[D178][0] ** 2'],
+          '0.5 * data[D177][0] * data[D178][0] ** 2',
+           'D179'],
 
-    D182: [None, 's', None],
+    D182: [None, 's', None, 'D182'],
     D183: [None, 'm/s²', 
-          'data[E29][0] / data[D182][0] / 60'],
+          'data[E29][0] / data[D182][0] / 60',
+           'D183'],
     D184: [None, 'kN', 
-          'data[D183][0] * data[D176][0]'],
+          'data[D183][0] * data[D176][0]',
+           'D184'],
     D185: [None, 'm/s²', 
-          'data[D184][0] / data[D150][0]'],
+          'data[D184][0] / data[D150][0]',
+           'D185'],
     D186: [None, 'm', 
-          '0.5 * data[D183][0] * data[D182][0] ** 2'],
+          '0.5 * data[D183][0] * data[D182][0] ** 2',
+           'D186'],
     D187: [None, 'Nm', 
-          'data[D185][0] * data[D116][0] / 2 / data[D105][0] / data[D122][0] / 1000'],
+          'data[D185][0] * data[D116][0] / 2 / data[D105][0] / data[D122][0] / 1000',
+           'D187'],
 
     D192: [None, 'kN', 
-          'data[E68][0] + data[E72][0]'],
+          'data[E68][0] + data[E72][0]',
+           'D192'],
     D193: [None, 'kN', 
-          'data[D158][0] * 2 / 3'],
+          'data[D158][0] * 2 / 3',
+           'D193'],
     D194: [None, 'kN', 
-           'data[D192][0] - data[D193][0]'],
-    D195: [None, '', None],
+           'data[D192][0] - data[D193][0]',
+           'D194'],
+    D195: [None, '', None, 'D195'],
     D196: [None, 'kN', 
-          'data[D194][0] / data[D195][0]']
-    
+          'data[D194][0] / data[D195][0]',
+           'D196']    
 }
 
 # richiesta modalità di input dati
