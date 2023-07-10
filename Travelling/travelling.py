@@ -15,53 +15,53 @@ E17 = 'Live loads on machine'
 E18 = 'Live loads on tripper / trailer'
 E20 = 'Dead load and live load'
 E21 = 'Dead load'
-E22 = '\'Operating wind speed'
-E23 = '\'Max wind speed for travelling to parking position'
+E22 = 'Operating wind speed'
+E23 = 'Max wind speed for travelling to parking position'
 E24 = 'Out of service wind'
-E25 = '\'Equivalent pressure to v1'
-E26 = '\'Equivalent pressure to v2'
-E27 = '\'Equivalent pressure to v3'
-E28 = '\'Max operating speed'
-E29 = '\'Max travel speed'
-E30 = '\'Max travel, with max travel wind'
-E31 = '\'Shape coefficient (according to ISO 5049)'
-E32 = '\'Rolling friction factor'
-E33 = '\'Static friction factor'
-E34 = '\'Fictitious friction factor'
+E25 = 'Equivalent pressure to v1'
+E26 = 'Equivalent pressure to v2'
+E27 = 'Equivalent pressure to v3'
+E28 = 'Max operating speed'
+E29 = 'Max travel speed'
+E30 = 'Max travel, with max travel wind'
+E31 = 'Shape coefficient (according to ISO 5049)'
+E32 = 'Rolling friction factor'
+E33 = 'Static friction factor'
+E34 = 'Fictitious friction factor'
 E35 = 'Friction factor to grip limit'
-E36 = '\'Rail slope'
-E37 = '\'Belt\'s lenght on tripper'
-E38 = '\'Lifting height on tripper'
-E39 = '\'Max wind area during normal operation'
-E40 = '\'Min wind area during traveling to parking'
-E41 = '\'Tripper carrying rollers weight (single roller)'
-E42 = '\'Tripper carrying rollers pitch'
-E43 = '\'Tripper carrying rollers quantity for each station'
-E44 = '\'Tripper return rollers weight (single roller)'
-E45 = '\'Tripper return rollers pitch'
-E46 = '\'Tripper return rollers quantity for each station'
+E36 = 'Rail slope'
+E37 = 'Belts lenght on tripper'
+E38 = 'Lifting height on tripper'
+E39 = 'Max wind area during normal operation'
+E40 = 'Min wind area during traveling to parking'
+E41 = 'Tripper carrying rollers weight (single roller)'
+E42 = 'Tripper carrying rollers pitch'
+E43 = 'Tripper carrying rollers quantity for each station'
+E44 = 'Tripper return rollers weight (single roller)'
+E45 = 'Tripper return rollers pitch'
+E46 = 'Tripper return rollers quantity for each station'
 E47 = 'iIdlers weight'
-E48 = '\'Belt weight'
-E49 = '\'Tripper capacity'
-E50 = '\'Tripper conveyor speed'
-E51 = '\'Material density'
-E52 = '\'Material weight'
-E53 = '\'Mechanical efficency '
+E48 = 'Belt weight'
+E49 = 'Tripper capacity'
+E50 = 'Tripper conveyor speed'
+E51 = 'Material density'
+E52 = 'Material weight'
+E53 = 'Mechanical efficency '
 E54 = 'Acceleration time to max speed'
 E55 = 'Acceleration to max speed'
 E56 = 'High speed rotating parts inertia'
 E58 = 'Wheel and shaft inertia'
 E59 = 'Motor, clutch and gear box inertia'
-E62F62 = '\'Friction force on rail during normal operation, travelling at c1'
-E63F63 = '\'Friction force on rail during travelling at c2'
-E66F66 = '\'Max wind force during normal operation (v1), travelling at c1'
-E67F67 = '\'Wind force during travelling to parking position (v2), travelling at c2*'
-E68 = '\'Storm wind, out of service (v3), static condition'
-E71F71 = '\'Force due to yard slope during normal operation, travelling at c1'
-E72F72 = '\'Force due to yard slope during travelling at c2'
-E75F75 = '\'Force for lifting material on tripper, travelling at c1'
-E78F78 = '\'Friction force due to material on tripper'
-E81F81 = '\'Friction force due to tripper idlers and belt'
+E62F62 = 'Friction force on rail during normal operation, travelling at c1'
+E63F63 = 'Friction force on rail during travelling at c2'
+E66F66 = 'Max wind force during normal operation (v1), travelling at c1'
+E67F67 = 'Wind force during travelling to parking position (v2), travelling at c2*'
+E68 = 'Storm wind, out of service (v3), static condition'
+E71F71 = 'Force due to yard slope during normal operation, travelling at c1'
+E72F72 = 'Force due to yard slope during travelling at c2'
+E75F75 = 'Force for lifting material on tripper, travelling at c1'
+E78F78 = 'Friction force due to material on tripper'
+E81F81 = 'Friction force due to tripper idlers and belt'
 E84F84 = 'Force due to material digging, normal lateral digging force'
 E85F85 = 'Force due to material digging, abnormal lateral digging force'
 E88F88 = 'Acceleration force'
@@ -75,29 +75,29 @@ H98 = 'Total percentage'
 D99 = 'RMS power'
 D100 = 'Min power'
 D101 = 'Max power'
-D105 = '\'Number of drive units'
-D106 = '\'Power of each unit'
+D105 = 'Number of drive units'
+D106 = 'Power of each unit'
 D107 = 'Motor torque'
-D109 = '\'Total installed power'
+D109 = 'Total installed power'
 D110 = 'Total motor torque'
 D111 = 'Ratio of installed power vs max absorbed power'
 D112 = 'Ratio of installed power vs RMS absorbed power'
 D115 = 'Service factor'
 D116 = 'Wheel diameter'
-D117 = '\'Max travel speed'
+D117 = 'Max travel speed'
 D118 = 'Motor speed'
-D119 = '\'Wheel speed'
+D119 = 'Wheel speed'
 D120 = 'Prereduction gear'
 D121 = 'Nominal power'
 D122 = 'Reduction ratio'
 D123 = 'Nominal torque'
 D127 = 'Wheel diameter'
-D128 = 'Min load on each wheel (Min operating load in FEM II condition)'
-D129 = 'NO_NAME' # non c'è il nome?
+D128 = 'Min load on each wheel (min operating load in FEM II condition)'
+D129 = 'Min load on each wheel in kN'
 D130 = 'Starting factor'
 D131 = 'Nom motor torque'
 D132 = 'Reduction ratio'
-D133 = '\'Min traction force'
+D133 = 'Min traction force'
 D134 = 'Max allowed torque'
 D135 = 'Number of motorized wheel for each motor'
 D136 = 'Max wheel torque'
@@ -121,14 +121,14 @@ D160 = 'Total braking and friction force'
 D162 = 'Brake quotlent'
 
 D167 = 'Net deceleration force'
-D168 = 'Deleleration:'
-D169 = 'NO_NAME' # non c'è il nome?
+D168 = 'Deleleration'
+D169 = 'Acceleration'
 D170 = 'Stopping time at c2 speed'
 D171 = 'Stopping distance'
 
 D175 = 'Net deceleration force'
-D176 = 'Deleleration:'
-D177 = 'NO_NAME' # non c'è il nome?
+D176 = 'Deleleration'
+D177 = 'Acceleration'
 D178 = 'Stopping time at c2 speed'
 D179 = 'Stopping distance'
 
@@ -184,19 +184,15 @@ data = \
     E38: [None, 'm', None],
     E39: [None, 'm²', None],
     E40: [None, 'm²', None],
-    E41: [None, 'kg', None, None], # quarto valore in input, da chiarire
+    E41: [None, 'kg', None],
     E42: [None, 'm', None],
     E43: [None, '', None], # no unità
-    E44: [None, '', None, None], # quarto valore in input, da chiarire
+    E44: [None, '', None],
     E45: [None, 'm', None],
     E46: [None, '', None], # no unità
     E47: [None, 'kg/m',
-           'data[E41][0] * '
-           'data[E43][0] / '
-           'data[E42][0] + '
-           'data[E44][0] * '
-           'data[E46][0] / '
-           'data[E45][0]'],
+           'data[E41][0] * data[E43][0] / data[E42][0] + '
+           'data[E44][0] * data[E46][0] / data[E45][0]'],
     E48: [None, 'kg/m', None],
     E49: [None, 't/h', None],
     E50: [None, 'm/s', None],
@@ -398,8 +394,50 @@ data = \
            'data[D150][0] / data[D160][0],',
            '"OK" if data[D162][0] < 1 else "NOT OK"'],
 
-    # mancano i dati da D167 fino alla fine, D196
+    D167: [None, 'kN', 
+           'data[D160][0] - [data[D150][0]'],
+    D168: [None, 't', 
+          '[data[E145][0] + [data[E20][0]'],
+    D169: [None, 'm/s²', 
+           'data[E167][0] / [data[D168][0]'],
+    D170: [None, 's', 
+           'data[E29][0] / 60 / data[D169][0]'],
+    D171: [None, 'm', 
+          '0.5 * data[D169][0] * data[D170][0] ** 2'],
 
+    D175: [None, 'kN', 
+           'data[D160][0] - [data[E72][0]'],
+    D176: [None, 't', 
+          '[data[E145][0] + [data[E20][0]'],
+    D177: [None, 'm/s²', 
+           'data[D175][0] / [data[D176][0]'],
+    D178: [None, 's', 
+           'data[D175][0] / data[D176][0]'],
+    D179: [None, 'm', 
+          '0.5 * data[D177][0] * data[D178][0] ** 2'],
+
+    D182: [None, 's', None],
+    D183: [None, 'm/s²', 
+          'data[E29][0] / data[D182][0] / 60'],
+    D184: [None, 'kN', 
+          'data[D183][0] * data[D176][0]'],
+    D185: [None, 'm/s²', 
+          'data[D184][0] / data[D150][0]'],
+    D186: [None, 'm', 
+          '0.5 * data[D183][0] * data[D182][0] ** 2'],
+    D187: [None, 'Nm', 
+          'data[D185][0] * data[D116][0] / 2 / data[D105][0] / data[D122][0] / 1000'],
+
+    D192: [None, 'kN', 
+          'data[E68][0] + data[E72][0]'],
+    D193: [None, 'kN', 
+          'data[D158][0] * 2 / 3'],
+    D194: [None, 'kN', 
+           'data[D192][0] - data[D193][0]'],
+    D195: [None, '', None],
+    D196: [None, 'kN', 
+          'data[D194][0] / data[D195][0]']
+    
 }
 
 # richiesta modalità di input dati
