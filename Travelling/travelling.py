@@ -5,7 +5,7 @@ I valori delle chiavi hanno un significato basato sulla posizione:
     - 0 = valore
     - 1 = unità di misura
     - 2 = formula di ricavo del valore (se è None, è un dato di input)
-    - 3 = posizione nel file Excel 
+    - 3 = posizione nel file Excel
 '''
 import math
 
@@ -176,10 +176,10 @@ data = \
     E28: [None, 'm/min', None, 'E28'],
     E29: [None, 'm/min', None, 'E29'],
     E30: [None, 'm/min', None, 'E30'],
-    E31: [None, '', None, 'E31'], 
-    E32: [None, '', None, 'E32'], 
-    E33: [None, '', None, 'E33'], 
-    E34: [None, '', None, 'E34'], 
+    E31: [None, '', None, 'E31'],
+    E32: [None, '', None, 'E32'],
+    E33: [None, '', None, 'E33'],
+    E34: [None, '', None, 'E34'],
     E35: [None, '', None, 'E35'],
     E36: [None, '%', None, 'E36'],
     E37: [None, 'm', None, 'E37'],
@@ -191,7 +191,7 @@ data = \
     E43: [None, '', None, 'E43'],
     E44: [None, '', None, 'E44'],
     E45: [None, 'm', None, 'E45'],
-    E46: [None, '', None, 'E46'], 
+    E46: [None, '', None, 'E46'],
     E47: [None, 'kg/m',
          'data[E41][0] * data[E43][0] / data[E42][0] + '
          'data[E44][0] * data[E46][0] / data[E45][0]',
@@ -218,7 +218,7 @@ data = \
              ['E62', 'F62']],
     E63F63: [[None, None], ['kN', 'kW'],
              ['9.81 * data[E21][0] * data[E32][0]',
-              'data[E63F63][0][0] * data[E29][0] / 60 / data[E53][0]']],
+              'data[E63F63][0][0] * data[E29][0] / 60 / data[E53][0]'],
              ['E63', 'F63']],
 
     E66F66: [[None, None], ['kN', 'kW'],
@@ -273,37 +273,37 @@ data = \
                    ['data[E62F62][0][0] + data[E66F66][0][0] + data[E71F71][0][0] + data[E75F75][0][0] + data[E78F78][0][0] + data[E81F81][0][0]',
                     'data[E62F62][0][1] + data[E66F66][0][1] + data[E71F71][0][1] + data[E75F75][0][1] + data[E78F78][0][1] + data[E81F81][0][1]',
                     'data[E92F92G92H92][0][1] / data[D105][0]',
-                    None], 
+                    None],
                     ['E92', 'F92', 'G92', 'H92']],
     E93F93G93H93: [[None, None, None, None], ['kN', 'kW', 'kW', '%'],
                    ['data[E62F62][0][0] + data[E66F66][0][0] + data[E71F71][0][0] + data[E75F75][0][0] + data[E78F78][0][0] + data[E81F81][0][0] + data[E88F88][0][0]',
                    'data[E62F62][0][1] + data[E66F66][0][1] + data[E71F71][0][1] + data[E75F75][0][1] + data[E78F78][0][1] + data[E81F81][0][1] + data[E88F88][0][1]',
                    'data[E93F93G93H93][0][1] / data[D105][0]',
-                   None], 
+                   None],
                    ['E93', 'F93', 'G93', 'H93']],
     E94F94G94H94: [[None, None, None, None], ['kN', 'kW', 'kW', '%'],
                    ['data[E62F62][0][0] + data[E66F66][0][0] + data[E71F71][0][0] + data[E84F84][0][0]',
                    'data[E62F62][0][1] + data[E66F66][0][1] + data[E71F71][0][1] + data[E84F84][0][1]',
                    'data[E94F94G94H94][0][1] / data[D105][0]',
-                   None], 
+                   None],
                    ['E94', 'F94', 'G94', 'H94']],
     E95F95G95H95: [[None, None, None, None], ['kN', 'kW', 'kW', '%'],
                    ['data[E62F62][0][0] + data[E66F66][0][0] + data[E71F71][0][0] + data[E84F84][0][0] + data[E88F88][0][0]',
                    'data[E62F62][0][1] + data[E66F66][0][1] + data[E71F71][0][1] + data[E84F84][0][1] + data[E88F88][0][1]',
                    'data[E95F95G95H95][0][1] / data[D105][0]',
-                   None], 
+                   None],
                    ['E95', 'F95', 'G95', 'H95']],
     E96F96G96H96: [[None, None, None, None], ['kN', 'kW', 'kW', '%'],
                    ['data[E62F62][0][0] + data[E66F66][0][0] + data[E71F71][0][0] + data[E85F85][0][0]',
                    'data[E62F62][0][1] + data[E66F66][0][1] + data[E71F71][0][1] + data[E85F85][0][1]',
                    'data[E96F96G96H96][0][1] / data[D105][0]',
-                    None], 
+                    None],
                    ['E96', 'F96', 'G96', 'H96']],
     E97F97G97H97: [[None, None, None, None], ['kN', 'kW', 'kW', '%'],
                    ['data[E63F63][0][0] + data[E67F67][0][0] + data[E72F72][0][0] + data[E88F88][0][0]',
                    'data[E63F63][0][1] + data[E67F67][0][1] + data[E72F72][0][1] + data[E88F88][0][1]',
                    'data[E97F97G97H97][0][1] / data[D105][0]',
-                    None], 
+                    None],
                    ['E97', 'F97', 'G97', 'H97']],
     H98: [None, '%',
          'sum([data[E92F92G92H92][0][3], data[E93F93G93H93][0][3],'
@@ -319,7 +319,7 @@ data = \
           'data[E95F95G95H95][0][1] ** 2 * data[E95F95G95H95][0][3] +'
           'data[E96F96G96H96][0][1] ** 2 * data[E96F96G96H96][0][3] +'
           'data[E97F97G97H97][0][1] ** 2 * data[E97F97G97H97][0][3] +) /'
-          'data[H98][0])', 
+          'data[H98][0])',
           'D99'],
     D100: [None, 'kW',
            'min([data[E92F92G92H92][0][1], data[E93F93G93H93][0][1],'
@@ -341,8 +341,8 @@ data = \
     D109: [None, 'kW',
            'data[D105][0] * data[D106][0]',
            'D109'],
-    
-    F109: [None, '', 
+
+    F109: [None, '',
            '"verified" if data[D109][0] > data[D101][0] else "not verified"',
            'F109'],
 
@@ -403,7 +403,7 @@ data = \
     D136: [None, 'Nm',
            '(data[D131][0] * data[D132][0] / data[D135][0]) * data[E53][0]',
            'D136'],
-    F136: [None, '', 
+    F136: [None, '',
            '"WHEEL/RAIL GRIP VERIFIED" if data[D134][0] > data[D136][0] else "SKIDDING SLIP"',
            'F136'],
     D137: [None, '',
@@ -456,68 +456,68 @@ data = \
            '"OK" if data[D162][0] < 1 else "NOT OK"',
            'G162'],
 
-    D167: [None, 'kN', 
+    D167: [None, 'kN',
            'data[D160][0] - [data[D150][0]',
            'D167'],
-    D168: [None, 't', 
+    D168: [None, 't',
           '[data[E145][0] + [data[E20][0]',
            'D168'],
-    D169: [None, 'm/s²', 
+    D169: [None, 'm/s²',
            'data[E167][0] / [data[D168][0]',
            'D169'],
-    D170: [None, 's', 
+    D170: [None, 's',
            'data[E29][0] / 60 / data[D169][0]',
            'D170'],
-    D171: [None, 'm', 
+    D171: [None, 'm',
           '0.5 * data[D169][0] * data[D170][0] ** 2',
            'D171'],
 
-    D175: [None, 'kN', 
+    D175: [None, 'kN',
            'data[D160][0] - [data[E72][0]',
            'D175'],
-    D176: [None, 't', 
+    D176: [None, 't',
           '[data[E145][0] + [data[E20][0]',
            'D176'],
-    D177: [None, 'm/s²', 
+    D177: [None, 'm/s²',
            'data[D175][0] / [data[D176][0]',
            'D177'],
-    D178: [None, 's', 
+    D178: [None, 's',
            'data[D175][0] / data[D176][0]',
            'D178'],
-    D179: [None, 'm', 
+    D179: [None, 'm',
           '0.5 * data[D177][0] * data[D178][0] ** 2',
            'D179'],
 
     D182: [None, 's', None, 'D182'],
-    D183: [None, 'm/s²', 
+    D183: [None, 'm/s²',
           'data[E29][0] / data[D182][0] / 60',
            'D183'],
-    D184: [None, 'kN', 
+    D184: [None, 'kN',
           'data[D183][0] * data[D176][0]',
            'D184'],
-    D185: [None, 'm/s²', 
+    D185: [None, 'm/s²',
           'data[D184][0] / data[D150][0]',
            'D185'],
-    D186: [None, 'm', 
+    D186: [None, 'm',
           '0.5 * data[D183][0] * data[D182][0] ** 2',
            'D186'],
-    D187: [None, 'Nm', 
+    D187: [None, 'Nm',
           'data[D185][0] * data[D116][0] / 2 / data[D105][0] / data[D122][0] / 1000',
            'D187'],
 
-    D192: [None, 'kN', 
+    D192: [None, 'kN',
           'data[E68][0] + data[E72][0]',
            'D192'],
-    D193: [None, 'kN', 
+    D193: [None, 'kN',
           'data[D158][0] * 2 / 3',
            'D193'],
-    D194: [None, 'kN', 
+    D194: [None, 'kN',
            'data[D192][0] - data[D193][0]',
            'D194'],
     D195: [None, '', None, 'D195'],
-    D196: [None, 'kN', 
+    D196: [None, 'kN',
           'data[D194][0] / data[D195][0]',
-           'D196']    
+           'D196']
 }
 
 # richiesta modalità di input dati
@@ -594,4 +594,3 @@ for key, value in data.items():
         print("{:<80} {:<10} {:<10}".format(key, formatted_value, value[1]))
     else:
         print("{:<80} {:<10} {:<10}".format(key, value[0], value[1]))
-
