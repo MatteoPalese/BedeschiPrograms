@@ -8,7 +8,9 @@ I valori delle chiavi hanno un significato basato sulla posizione:
     - 3 = posizione nel file Excel
 '''
 import math
+import openpyxl
 
+cs = ': '
 E15 = 'Machine dead load'
 E16 = 'Tripper / trailer dead load'
 E17 = 'Live loads on machine'
@@ -40,7 +42,7 @@ E43 = 'Tripper carrying rollers quantity for each station'
 E44 = 'Tripper return rollers weight (single roller)'
 E45 = 'Tripper return rollers pitch'
 E46 = 'Tripper return rollers quantity for each station'
-E47 = 'iIdlers weight'
+E47 = 'Idlers weight'
 E48 = 'Belt weight'
 E49 = 'Tripper capacity'
 E50 = 'Tripper conveyor speed'
@@ -52,95 +54,128 @@ E55 = 'Acceleration to max speed'
 E56 = 'High speed rotating parts inertia'
 E58 = 'Wheel and shaft inertia'
 E59 = 'Motor, clutch and gear box inertia'
-E62F62 = 'Friction force on rail during normal operation, travelling at c1'
-E63F63 = 'Friction force on rail during travelling at c2'
-E66F66 = 'Max wind force during normal operation (v1), travelling at c1'
-E67F67 = 'Wind force during travelling to parking position (v2), travelling at c2'
-E68 = 'Storm wind, out of service (v3), static condition'
-E71F71 = 'Force due to yard slope during normal operation, travelling at c1'
-E72F72 = 'Force due to yard slope during travelling at c2'
-E75F75 = 'Force for lifting material on tripper, travelling at c1'
-E78F78 = 'Friction force due to material on tripper, travelling at c1'
-E81F81 = 'Friction force due to tripper idlers and belt, travelling at c1'
-E84F84 = 'Force due to material digging, normal lateral digging force travelling at c1'
-E85F85 = 'Force due to material digging, abnormal lateral digging force travelling at c1'
+
+t_A61 = 'Friction force on rail'
+E62F62 = t_A61 + cs + 'during normal operation, travelling at c1'
+E63F63 = t_A61 + cs + 'during travelling at c2'
+
+t_A65 = 'Wind force'
+E66F66 = t_A65 + cs + 'Max during normal operation (v1), travelling at c1'
+E67F67 = t_A65 + cs + 'during travelling to parking position (v2), travelling at c2'
+E68 = t_A65 + cs + 'during storm wind, out of service (v3), static condition'
+
+t_A70 = 'Force due to yard slope'
+E71F71 = t_A70 + cs + 'during normal operation, travelling at c1'
+E72F72 = t_A70 + cs + 'during travelling at c2'
+
+E75F75 = 'Force for lifting material on tripper travelling at c1'
+E78F78 = 'Friction force due to material on tripper travelling at c1'
+E81F81 = 'Friction force due to tripper idlers and belt travelling at c1'
+
+t_A83 = 'Force due to material digging'
+E84F84 = t_A83 + cs + 'normal lateral digging force travelling at c1'
+E85F85 = t_A83 + cs + 'abnormal lateral digging force travelling at c1'
+
 E88F88 = 'Acceleration force'
-E92F92G92H92 = 'Normal operation - stacking'
-E93F93G93H93 = 'Normal operation acceleration - stacking'
-E94F94G94H94 = 'Normal operation - reclaiming'
-E95F95G95H95 = 'Normal operation accelaration - reclaiming'
-E96F96G96H96 = 'Abnormal operation - reclaiming'
-E97F97G97H97 = 'Travelling to parking position with max wind'
-H98 = 'Total percentage'
+
+t_A90 = 'Load combinations'
+E92F92G92H92 = t_A90 + cs + 'normal operation - stacking'
+E93F93G93H93 = t_A90 + cs + 'normal operation acceleration - stacking'
+E94F94G94H94 = t_A90 + cs + 'normal operation - reclaiming'
+E95F95G95H95 = t_A90 + cs + 'normal operation accelaration - reclaiming'
+E96F96G96H96 = t_A90 + cs + 'abnormal operation - reclaiming'
+E97F97G97H97 = t_A90 + cs + 'travelling to parking position with max wind'
+H98 = t_A90 + cs + 'Total percentage'
+
 D99 = 'RMS power'
 D100 = 'Min power'
 D101 = 'Max power'
-D105 = 'Number of drive units'
-D106 = 'Power of each unit'
-D107 = 'Motor torque'
-D109 = 'Total installed power'
-F109 = 'VALUE_CHECK'
-D110 = 'Total motor torque'
-D111 = 'Ratio of installed power vs max absorbed power'
-D112 = 'Ratio of installed power vs RMS absorbed power'
-F112 = 'VALUE_CHECK'
-D115 = 'Service factor'
-D116 = 'Wheel diameter'
-D117 = 'Max travel speed'
-D118 = 'Motor speed'
-D119 = 'Wheel speed'
-D120 = 'Prereduction gear'
-D121 = 'Nominal power'
-D122 = 'Reduction ratio'
-D123 = 'Nominal torque'
-D127 = 'Wheel diameter'
-D128 = 'Min load on each wheel (min operating load in FEM II condition)'
-D129 = 'Min load on each wheel in kN'
-D130 = 'Starting factor'
-D131 = 'Nom motor torque'
-D132 = 'Reduction ratio'
-D133 = 'Min traction force'
-D134 = 'Max allowed torque'
-D135 = 'Number of motorized wheel for each motor'
-D136 = 'Max wheel torque'
-F136 = 'VALUE_CHECK'
-D137 = 'Total number of driven wheel'
-D138 = 'Total number of wheel (for machine)'
-E143 = 'Equivalent mass of motor'
-E144 = 'Equivalent mass of wheels'
-E145 = 'Equivalent mass of drives'
+
+t_A103 = 'Installed power'
+D105 = t_A103 + cs + 'number of drive units'
+D106 = t_A103 + cs + 'power of each unit'
+D107 = t_A103 + cs + 'motor torque'
+D109 = t_A103 + cs + 'total installed power'
+F109 = t_A103 + cs + 'VALUE_CHECK_F109'
+D110 = t_A103 + cs + 'total motor torque'
+D111 = t_A103 + cs + 'ratio of installed power vs max absorbed power'
+D112 = t_A103 + cs + 'ratio of installed power vs RMS absorbed power'
+F112 = t_A103 + cs + 'VALUE_CHECK_F112'
+
+t_A114 = 'Reduction gear'
+D115 = t_A114 + cs + 'service factor'
+D116 = t_A114 + cs + 'wheel diameter'
+D117 = t_A114 + cs + 'max travel speed'
+D118 = t_A114 + cs + 'motor speed'
+D119 = t_A114 + cs + 'wheel speed'
+D120 = t_A114 + cs + 'prereduction gear'
+D121 = t_A114 + cs + 'nominal power'
+D122 = t_A114 + cs + 'reduction ratio'
+D123 = t_A114 + cs + 'nominal torque'
+
+t_A125 = 'Torque verification against wheel slipping'
+D127 = t_A125 + cs + 'wheel diameter'
+D128 = t_A125 + cs + 'min load on each wheel (min operating load in FEM II condition)'
+D129 = t_A125 + cs + 'min load on each wheel in kN'
+D130 = t_A125 + cs + 'starting factor'
+D131 = t_A125 + cs + 'nominal motor torque'
+D132 = t_A125 + cs + 'reduction ratio'
+D133 = t_A125 + cs + 'min traction force'
+D134 = t_A125 + cs + 'max allowed torque'
+D135 = t_A125 + cs + 'number of motorized wheel for each motor'
+D136 = t_A125 + cs + 'max wheel torque'
+F136 = t_A125 + cs + 'VALUE_CHECK_F136'
+D137 = t_A125 + cs + 'total number of driven wheel'
+D138 = t_A125 + cs + 'total number of wheel (for machine)'
+
+t_A142 = 'Long travel brakes'
+E143 = t_A142 + cs + 'equivalent mass of motor'
+E144 = t_A142 + cs + 'equivalent mass of wheels'
+E145 = t_A142 + cs + 'equivalent mass of drives'
+
 D147 = 'Rated brake torque setting'
 D149 = 'Total brake force against witch the brake shall act during operation'
 D150 = 'Total brake force against witch the brake shall act during relocation'
-D155 = 'Rolling friction assuming straight travelling, considering dead loading and encrustation'
-D156 = 'Braking torque per drive unit'
-D157 = 'Braking force per drive unit'
-D158 = 'Total braking force per machine'
-D159 = 'Max traction under DL + LL'
-D160 = 'Total braking and friction force'
+
+t_A152 = 'Braking forces with all drives installed, rolling friction'
+D155 = t_A152 + ' ' + 'assuming straight travelling, considering dead loading and encrustation'
+D156 = t_A152 + cs + 'braking torque per drive unit'
+D157 = t_A152 + cs + 'braking force per drive unit'
+D158 = t_A152 + cs + 'total braking force per machine'
+D159 = t_A152 + cs + 'max traction under DL + LL'
+D160 = t_A152 + cs + 'total braking and friction force'
+
 D162 = 'Brake quotlent'
-G162 = 'VALUE_CHECK'
-D167 = 'Net deceleration force'
-D168 = 'Deleleration'
-D169 = 'Acceleration'
-D170 = 'Stopping time at c2 speed'
-D171 = 'Stopping distance'
-D175 = 'Net deceleration force'
-D176 = 'Deleleration'
-D177 = 'Acceleration'
-D178 = 'Stopping time at c2 speed'
-D179 = 'Stopping distance'
-D182 = 'Design deceleration time'
-D183 = 'Design acceleration at c2 speed'
-D184 = 'Net force'
-D185 = 'Total braking force considering the slope'
-D186 = 'Stopping distance, total braking force considering the slope'
-D187 = 'Minimum required torque per brake'
-D192 = 'Storm wind and slope force'
-D193 = 'Total braking force per machine with 2/3 of brakes in function'
-D194 = 'Max force for each rail clamp with 2/3 of brakes in function'
-D195 = 'Number of rail clamps'
-D196 = 'Load of each rail clamp'
+F162 = 'VALUE_CHECK_F162'
+
+t_A165 = 'Stopping distance'
+D167 = t_A165 + cs + 'net deceleration force'
+D168 = t_A165 + cs + 'deleleration'
+D169 = t_A165 + cs + 'acceleration'
+D170 = t_A165 + cs + 'stopping time at c2 speed'
+D171 = t_A165 + cs + 'stopping distance'
+
+t_A173 = 'Braking forces, no wind load, emergency stop'
+D175 = t_A173 + cs + 'net deceleration force'
+D176 = t_A173 + cs + 'Deleleration'
+D177 = t_A173 + cs + 'Acceleration'
+D178 = t_A173 + cs + 'Stopping time at c2 speed'
+D179 = t_A173 + cs + 'Stopping distance'
+
+t_A181 = 'Braking design deceleration time with v2 wind speed and yard slope during relocation'
+D182 = t_A181 + cs + 'design deceleration time'
+D183 = t_A181 + cs + 'Design acceleration at c2 speed'
+D184 = t_A181 + cs + 'Net force'
+D185 = t_A181 + cs + 'Total braking force considering the slope'
+D186 = t_A181 + cs + 'Stopping distance, total braking force considering the slope'
+D187 = t_A181 + cs + 'Minimum required torque per brake'
+
+t_A190 = 'Rail clamps'
+D192 = t_A190 + cs + 'storm wind and slope force'
+D193 = t_A190 + cs + 'total braking force per machine with 2/3 of brakes in function'
+D194 = t_A190 + cs + 'max force for each rail clamp with 2/3 of brakes in function'
+D195 = t_A190 + cs + 'number of rail clamps'
+D196 = t_A190 + cs + 'load of each rail clamp'
 
 current_line = 0 # inizializza l'indice della riga corrente a 0
 
@@ -213,9 +248,9 @@ data = \
     E59: [None, 'kg m²', None, 'E59'],
 
     E62F62: [[None, None], ['kN', 'kW'],
-             ['9.81 * data[E20][0] * data[E32][0]',
-              'data[E62F62][0][0] * data[E28][0] / 60 / data[E53][0]'],
-             ['E62', 'F62']],
+            ['9.81 * data[E20][0] * data[E32][0]',
+             'data[E62F62][0][0] * data[E28][0] / 60 / data[E53][0]'],
+            ['E62', 'F62']],
     E63F63: [[None, None], ['kN', 'kW'],
              ['9.81 * data[E21][0] * data[E32][0]',
               'data[E63F63][0][0] * data[E29][0] / 60 / data[E53][0]'],
@@ -234,11 +269,11 @@ data = \
           'E68'],
 
     E71F71: [[None, None], ['kN', 'kW'],
-             ['9.81 * data[E20][0] * data[E36][0]',
+             ['data[E20][0] * (data[E36][0] / 100) * 9.81',
               'data[E71F71][0][0] * data[E28][0] / 60 / data[E53][0]'],
              ['E71', 'F71']],
     E72F72: [[None, None], ['kN', 'kW'],
-             ['data[E21][0] * data[E36][0] * 9.81',
+             ['data[E21][0] * (data[E36][0] / 100) * 9.81',
               'data[E72F72][0][0] * data[E29][0] / 60 / data[E53][0]'],
              ['E72', 'F72']],
 
@@ -307,35 +342,28 @@ data = \
                    ['E97', 'F97', 'G97', 'H97']],
     H98: [None, '%',
          'sum([data[E92F92G92H92][0][3], data[E93F93G93H93][0][3],'
-         'data[E94F94G94H94][0][3]), data[E95F95G95H95][0][3],'
+         'data[E94F94G94H94][0][3], data[E95F95G95H95][0][3],'
          'data[E96F96G96H96][0][3], data[E97F97G97H97][0][3]])',
          'H98'],
 
     D99: [None, 'kW',
-          'math.sqrt(('
-          'data[E92F92G92H92][0][1] ** 2 * data[E92F92G92H92][0][3] +'
-          'data[E93F93G93H93][0][1] ** 2 * data[E93F93G93H93][0][3] +'
-          'data[E94F94G94H94][0][1] ** 2 * data[E94F94G94H94][0][3] +'
-          'data[E95F95G95H95][0][1] ** 2 * data[E95F95G95H95][0][3] +'
-          'data[E96F96G96H96][0][1] ** 2 * data[E96F96G96H96][0][3] +'
-          'data[E97F97G97H97][0][1] ** 2 * data[E97F97G97H97][0][3] +) /'
-          'data[H98][0])',
+          'math.sqrt(((data[E92F92G92H92][0][1] ** 2 * data[E92F92G92H92][0][3] / 100) + (data[E93F93G93H93][0][1] ** 2 * data[E93F93G93H93][0][3]  / 100) + (data[E94F94G94H94][0][1] ** 2 * data[E94F94G94H94][0][3] / 100) + (data[E95F95G95H95][0][1] ** 2 * data[E95F95G95H95][0][3] / 100) + (data[E96F96G96H96][0][1] ** 2 * data[E96F96G96H96][0][3] / 100) + (data[E97F97G97H97][0][1] ** 2 * data[E97F97G97H97][0][3] / 100) / data[H98][0]))',
           'D99'],
     D100: [None, 'kW',
            'min([data[E92F92G92H92][0][1], data[E93F93G93H93][0][1],'
-           'data[E94F94G94H94][0][1]), data[E95F95G95H95][0][1],'
+           'data[E94F94G94H94][0][1], data[E95F95G95H95][0][1],'
            'data[E96F96G96H96][0][1], data[E97F97G97H97][0][1]])',
            'D100'],
     D101: [None, 'kW',
            'max([data[E92F92G92H92][0][1], data[E93F93G93H93][0][1],'
-           'data[E94F94G94H94][0][1]), data[E95F95G95H95][0][1],'
+           'data[E94F94G94H94][0][1], data[E95F95G95H95][0][1],'
            'data[E96F96G96H96][0][1], data[E97F97G97H97][0][1]])',
            'D101'],
 
     D105: [None, '', None, 'D105'],
     D106: [None, 'kW', None, 'D106'],
     D107: [None, 'Nm',
-           'data[106][0] * 1000 / (data[D118][0] / (60 / 6.28))',
+           'data[D106][0] * 1000 / (data[D118][0] / (60 / 6.28))',
            'D107'],
 
     D109: [None, 'kW',
@@ -375,7 +403,7 @@ data = \
            'data[D118][0] / (data[D119][0] * data[D120][0])',
            'D122'],
     D123: [None, 'Nm',
-           'data[D107][0] * data[D122][0] * data[D115][0]',
+           '(data[D107][0] * data[D122][0] * data[D115][0]) / 1000',
            'D123'],
 
     D127: [None, 'm',
@@ -424,10 +452,10 @@ data = \
     D147: [None, 'Nm', None, 'D147'],
 
     D149: [None, 'kN',
-           'data[E66][0] + data[E71][0]',
+           'data[E66F66][0][0] + data[E71F71][0][0]',
            'D149'],
     D150: [None, 'kN',
-           'data[E67][0] + data[E72][0]',
+           'data[E67F67][0][0] + data[E72F72][0][0]',
            'D150'],
 
     D155: [None, 'kN',
@@ -450,20 +478,20 @@ data = \
            'D160'],
 
     D162: [None, '',
-           'data[D150][0] / data[D160][0],',
+           'data[D150][0] / data[D160][0]',
            'D162'],
-    G162: [None, '',
-           '"OK" if data[D162][0] < 1 else "NOT OK"',
-           'G162'],
+    F162: [None, '',
+           '\'OK\' if data[D162][0] < 1 else \'NOT OK\'',
+           'F162'],
 
     D167: [None, 'kN',
-           'data[D160][0] - [data[D150][0]',
+           'data[D160][0] - data[D150][0]',
            'D167'],
     D168: [None, 't',
-          '[data[E145][0] + [data[E20][0]',
+          'data[E145][0] + data[E20][0]',
            'D168'],
     D169: [None, 'm/s²',
-           'data[E167][0] / [data[D168][0]',
+           'data[D167][0] / data[D168][0]',
            'D169'],
     D170: [None, 's',
            'data[E29][0] / 60 / data[D169][0]',
@@ -473,13 +501,13 @@ data = \
            'D171'],
 
     D175: [None, 'kN',
-           'data[D160][0] - [data[E72][0]',
+           'data[D160][0] - data[E72F72][0][0]',
            'D175'],
     D176: [None, 't',
-          '[data[E145][0] + [data[E20][0]',
+          'data[E145][0] + data[E20][0]',
            'D176'],
     D177: [None, 'm/s²',
-           'data[D175][0] / [data[D176][0]',
+           'data[D175][0] / data[D176][0]',
            'D177'],
     D178: [None, 's',
            'data[D175][0] / data[D176][0]',
@@ -496,17 +524,17 @@ data = \
           'data[D183][0] * data[D176][0]',
            'D184'],
     D185: [None, 'm/s²',
-          'data[D184][0] / data[D150][0]',
+          'data[D184][0] + data[D150][0]',
            'D185'],
     D186: [None, 'm',
           '0.5 * data[D183][0] * data[D182][0] ** 2',
            'D186'],
     D187: [None, 'Nm',
-          'data[D185][0] * data[D116][0] / 2 / data[D105][0] / data[D122][0] / 1000',
+          'data[D185][0] * data[D116][0] / 2 / data[D105][0] / data[D122][0] * 1000',
            'D187'],
 
     D192: [None, 'kN',
-          'data[E68][0] + data[E72][0]',
+          'data[E68][0] + data[E72F72][0][0]',
            'D192'],
     D193: [None, 'kN',
           'data[D158][0] * 2 / 3',
@@ -520,11 +548,13 @@ data = \
            'D196']
 }
 
+
 # richiesta modalità di input dati
 print('Choose the data input mode:\n '
       '\t1. manual input: each value is entered by the user, one by one.\n'
       '\t2. file input: a text file is read to retrieve each value, one per line.\n')
 scelta = int(input('Your choice: '))
+
 
 # richiesta dati di input manuale
 if scelta == 1:
@@ -534,14 +564,20 @@ if scelta == 1:
             for i in range(len(data[key][2])): # cerco None nella lista
                 if not data[key][2][i]: # se lo trovo
                     try: # prendo l'input
-                        data[key][0][i] = float(input(key + '(' + data[key][1][i] + '): '))
+                        if data[key][1][i] == '':
+                            data[key][0][i] = float(input(key + ' = '))
+                        else:
+                            data[key][0][i] = float(input(key + ' [' + data[key][1][i] + '] = '))
                     except ValueError: # se non viene inserito il valore corretto
                         print('\nLast input data is not valid.')
                         exit(-1) # fermo il programma
         else: # se è un singolo valore
             if not data[key][2]:  # controllo se è dato di input
                 try: # se lo è
-                    data[key][0] = float(input(key + '(' + data[key][1] + '): '))
+                    if data[key][1] == '':
+                        data[key][0] = float(input(key + ' = '))
+                    else:
+                        data[key][0] = float(input(key + ' [' + data[key][1] + '] = '))
                 except ValueError:
                     print('\nLast input data is not valid.')
                     exit(-1)
@@ -570,27 +606,29 @@ elif scelta == 2:
                     exit(-1)
     f.close() # chiudi il file di testo
 
+
 # calcolo dei valori di output
 print('\nCalculating ouput values...\n')
 for key in data.keys(): # cerca i dati di output
     if type(data[key][2]) is list: # controllo se ha più di un dato
         for i in range(len(data[key][2])): # cerco formule nella lista
-            if data[key][2][i]: # se trovo la lista
+            if data[key][2][i]: # se trovo la formula
                 data[key][0][i] = eval(data[key][2][i]) # calcolo con eval il dato di output
     elif data[key][2]: # se è un valore singolo, controllo che sia una formula
-         data[key][0] = eval(data[key][2]) # calcolo
+        data[key][0] = eval(data[key][2]) # calcolo
+
 
 # stampa dei valori incolonnati
-print("{:<80} {:<10} {:<10}".format("Key", "Value", "Unit")) # header con titoli delle colonne
-print('------------------------------------------------------------------------------------------------------')
+print("{:<150} {:<10} {:<10}".format("Key", "Value", "Unit")) # header con titoli delle colonne
+print('---------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
 for key, value in data.items():
     if type(value[0]) is list:
         for i in range(len(data[key][0])):
             if type(value[0][i]) is float:
                 formatted_value = '{:.3f}'.format(value[0][i])
-                print("{:<80} {:<10} {:<10}".format(key, formatted_value, value[1][i]))
+                print("{:<150} {:<10} {:<10}".format(key, formatted_value, value[1][i]))
     elif type(value[0]) is float:
         formatted_value = '{:.3f}'.format(value[0])
-        print("{:<80} {:<10} {:<10}".format(key, formatted_value, value[1]))
+        print("{:<150} {:<10} {:<10}".format(key, formatted_value, value[1]))
     else:
-        print("{:<80} {:<10} {:<10}".format(key, value[0], value[1]))
+        print("{:<150} {:<10} {:<10}".format(key, value[0], value[1]))
