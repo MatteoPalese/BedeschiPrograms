@@ -183,5 +183,17 @@ for formula in formule_errate:
         print(f'{data[formula[1]][2]} - {formula[1]}')
         data[formula[1]][0] = eval(data[formula[1]][2]) # calcolo
 
+# stampa dei valori incolonnati
+print("{:<70} {:<10} {:<10}".format("Key", "Value", "Unit")) # header con titoli delle colonne
+print('----------------------------------------------------------------------------------------')
 for key, value in data.items():
-    print(f"{key}: {value}")
+    if type(value[0]) is list:
+        for i in range(len(data[key][0])):
+            if type(value[0][i]) is float:
+                formatted_value = '{:.3f}'.format(value[0][i])
+                print("{:<70} {:<10} {:<10}".format(key, formatted_value, value[1][i]))
+    elif type(value[0]) is float:
+        formatted_value = '{:.3f}'.format(value[0])
+        print("{:<70} {:<10} {:<10}".format(key, formatted_value, value[1]))
+    else:
+        print("{:<70} {:<10} {:<10}".format(key, value[0], value[1]))
