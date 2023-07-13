@@ -9,6 +9,9 @@ I valori delle chiavi hanno un significato basato sulla posizione:
 '''
 import math
 import openpyxl
+from openpyxl import Workbook, load_workbook
+
+travelling_file = load_workbook('Travelling.xlsx')
 
 cs = ': '
 E15 = 'Machine dead load'
