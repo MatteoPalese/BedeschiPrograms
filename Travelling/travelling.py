@@ -9,6 +9,9 @@ I valori delle chiavi hanno un significato basato sulla posizione:
 '''
 import math
 from openpyxl import Workbook, load_workbook
+import os, shutil
+import tkinter as tk
+from tkinter import filedialog
 
 cs = ': '
 E15 = 'Machine dead load'
@@ -48,7 +51,7 @@ E49 = 'Tripper capacity'
 E50 = 'Tripper conveyor speed'
 E51 = 'Material density'
 E52 = 'Material weight'
-E53 = 'Mechanical efficency '
+E53 = 'Mechanical efficency'
 E54 = 'Acceleration time to max speed'
 E55 = 'Acceleration to max speed'
 E56 = 'High speed rotating parts inertia'
@@ -586,25 +589,24 @@ elif scelta == 2:
     print('\nReading file...')
     with open('data_sample.txt', 'r') as f: # apre il file di testo e leggi le righe
         lines = f.readlines() # crea una lista, ogni riga è un elemento
-    for key in data.keys():
-        if type(data[key][2]) is list:
-            for i in range(len(data[key][2])):
-                if not data[key][2][i]:
+        for key in data.keys():
+            if type(data[key][2]) is list:
+                for i in range(len(data[key][2])):
+                    if not data[key][2][i]:
+                        try:
+                            data[key][0][i] = float(lines[current_line].strip()) # legge la riga corrente e incrementa l'indice della riga corrente
+                            current_line += 1
+                        except ValueError:
+                            print('\nFile input data is not valid at line ' + str(current_line) + '.')
+                            exit(-1)
+            else:
+                if not data[key][2]:
                     try:
-                        data[key][0][i] = float(lines[current_line].strip()) # legge la riga corrente e incrementa l'indice della riga corrente
+                        data[key][0] = float(lines[current_line].strip()) # legge la riga corrente e incrementa l'indice della riga corrente
                         current_line += 1
                     except ValueError:
                         print('\nFile input data is not valid at line ' + str(current_line) + '.')
                         exit(-1)
-        else:
-            if not data[key][2]:
-                try:
-                    data[key][0] = float(lines[current_line].strip()) # legge la riga corrente e incrementa l'indice della riga corrente
-                    current_line += 1
-                except ValueError:
-                    print('\nFile input data is not valid at line ' + str(current_line) + '.')
-                    exit(-1)
-    f.close() # chiudi il file di testo
 
 
 # calcolo dei valori di output
@@ -642,4 +644,15 @@ for key in data.keys():
             trav_sheet[data[key][3][i]].value = data[key][0][i] # inserisco il valore
     else: # se non è una lista
         trav_sheet[data[key][3]].value = data[key][0]
-trav_file.save('Travelling_nuovo.xlsx') # salvo il nuovo file
+
+
+'''
+# richiesta directory e spostamento file nella stessa --> V1
+file_path = os.path.join(os.getcwd(), 'Travelling_nuovo.xlsx') # ottengo il percorso del file
+root = tk.Tk() # creo la finestra principale di tkinter
+root.withdraw() # la nascondo
+new_dir_path = filedialog.askdirectory() # chiedo dove salvare il file
+shutil.move(file_path, os.path.join(new_dir_path, "Travelling_nuovo.xlsx"))
+print('Il file è stato spostato in: ' +  new_dir_path)
+input('\nPremi qualsiasi tasto per terminare il programma.')
+'''
