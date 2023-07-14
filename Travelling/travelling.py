@@ -8,10 +8,7 @@ I valori delle chiavi hanno un significato basato sulla posizione:
     - 3 = posizione nel file Excel
 '''
 import math
-import openpyxl
 from openpyxl import Workbook, load_workbook
-
-travelling_file = load_workbook('Travelling.xlsx')
 
 cs = ': '
 E15 = 'Machine dead load'
@@ -635,3 +632,14 @@ for key, value in data.items():
         print("{:<150} {:<10} {:<10}".format(key, formatted_value, value[1]))
     else:
         print("{:<150} {:<10} {:<10}".format(key, value[0], value[1]))
+
+# inserimento dei dati su file Excel e salvataggio di un nuovo file
+trav_file = load_workbook('Travelling.xlsx') # carico il file Excel completo
+trav_sheet = trav_file.active # carico il foglio singolo, l'unico che è presente, TRAVELLING
+for key in data.keys():
+    if type(data[key][3]) is list: # controllo se ha più di una cella
+        for i in range(len(data[key][3])): # per ogni posizione
+            trav_sheet[data[key][3][i]].value = data[key][0][i] # inserisco il valore
+    else: # se non è una lista
+        trav_sheet[data[key][3]].value = data[key][0]
+trav_file.save('Travelling_nuovo.xlsx') # salvo il nuovo file
