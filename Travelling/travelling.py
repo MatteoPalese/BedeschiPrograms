@@ -551,17 +551,15 @@ data = \
            'D196']
 }
 
-
 # richiesta modalità di input dati
 print('Choose the data input mode:\n '
       '\t1. manual input: each value is entered by the user, one by one.\n'
       '\t2. file input: a text file is read to retrieve each value, one per line.\n')
 scelta = int(input('Your choice: '))
 
-
 # richiesta dati di input manuale
 if scelta == 1:
-    print('Insert every values one by one requested.\n')
+    print('Insert every values one by one as requested.\n')
     for key in data.keys(): # cerca i dati di input controllando il terzo valore
         if type(data[key][2]) is list: # controllo se ha più di un dato
             for i in range(len(data[key][2])): # cerco None nella lista
@@ -573,6 +571,7 @@ if scelta == 1:
                             data[key][0][i] = float(input(key + ' [' + data[key][1][i] + '] = '))
                     except ValueError: # se non viene inserito il valore corretto
                         print('\nLast input data is not valid.')
+                        input('\nPress \'enter\' key to close the program.')
                         exit(-1) # fermo il programma
         else: # se è un singolo valore
             if not data[key][2]:  # controllo se è dato di input
@@ -583,31 +582,38 @@ if scelta == 1:
                         data[key][0] = float(input(key + ' [' + data[key][1] + '] = '))
                 except ValueError:
                     print('\nLast input data is not valid.')
+                    input('\nPress \'enter\' key to close the program.')
                     exit(-1)
 # lettura dati input da file
 elif scelta == 2:
     print('\nReading file...')
-    with open('data_sample.txt', 'r') as f: # apre il file di testo e leggi le righe
-        lines = f.readlines() # crea una lista, ogni riga è un elemento
-        for key in data.keys():
-            if type(data[key][2]) is list:
-                for i in range(len(data[key][2])):
-                    if not data[key][2][i]:
+    try:
+        with open('data_sample.txt', 'r') as f: # apre il file di testo e leggi le righe
+            lines = f.readlines() # crea una lista, ogni riga è un elemento
+            for key in data.keys():
+                if type(data[key][2]) is list:
+                    for i in range(len(data[key][2])):
+                        if not data[key][2][i]:
+                            try:
+                                data[key][0][i] = float(lines[current_line].strip()) # legge la riga corrente e incrementa l'indice della riga corrente
+                                current_line += 1
+                            except ValueError:
+                                print('\nFile input data is not valid at line ' + str(current_line) + '.')
+                                input('\nPress \'enter\' key to close the program.')
+                                exit(-1)
+                else:
+                    if not data[key][2]:
                         try:
-                            data[key][0][i] = float(lines[current_line].strip()) # legge la riga corrente e incrementa l'indice della riga corrente
+                            data[key][0] = float(lines[current_line].strip()) # legge la riga corrente e incrementa l'indice della riga corrente
                             current_line += 1
                         except ValueError:
                             print('\nFile input data is not valid at line ' + str(current_line) + '.')
+                            input('\nPress \'enter\' key to close the program.')
                             exit(-1)
-            else:
-                if not data[key][2]:
-                    try:
-                        data[key][0] = float(lines[current_line].strip()) # legge la riga corrente e incrementa l'indice della riga corrente
-                        current_line += 1
-                    except ValueError:
-                        print('\nFile input data is not valid at line ' + str(current_line) + '.')
-                        exit(-1)
-
+    except FileNotFoundError:
+        print('\nThe file with input data does not exist.')
+        input('\nPress \'enter\' key to close the program.')
+        exit(-1)
 
 # calcolo dei valori di output
 print('\nCalculating ouput values...\n')
@@ -644,15 +650,13 @@ for key in data.keys():
             trav_sheet[data[key][3][i]].value = data[key][0][i] # inserisco il valore
     else: # se non è una lista
         trav_sheet[data[key][3]].value = data[key][0]
+trav_file.save('Travelling_new.xlsx')
 
-
-'''
 # richiesta directory e spostamento file nella stessa --> V1
-file_path = os.path.join(os.getcwd(), 'Travelling_nuovo.xlsx') # ottengo il percorso del file
+ex_file_path = os.path.join(os.getcwd(), 'Travelling_new.xlsx') # ottengo il percorso del file
 root = tk.Tk() # creo la finestra principale di tkinter
 root.withdraw() # la nascondo
 new_dir_path = filedialog.askdirectory() # chiedo dove salvare il file
-shutil.move(file_path, os.path.join(new_dir_path, "Travelling_nuovo.xlsx"))
-print('Il file è stato spostato in: ' +  new_dir_path)
-input('\nPremi qualsiasi tasto per terminare il programma.')
-'''
+shutil.move(ex_file_path, os.path.join(new_dir_path, "Travelling_new.xlsx"))
+print('\nThe new Travelling file was created in ' +  new_dir_path)
+input('\nPress \'enter\' key to close the program.')
