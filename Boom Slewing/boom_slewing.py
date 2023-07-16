@@ -1,4 +1,5 @@
 # BOOM SLEWING
+from openpyxl import Workbook, load_workbook
 
 # le unità dalle righe 8 a 20
 u1 = ['t', 'm', 't x m²']
@@ -57,21 +58,21 @@ data = \
     'teeth tickness b': [[None, None], ['pinion teeth stress', 'slew bearing teeth stress'], [None, None], ['P231', 'Q231']],
     'Y': [[None, None], ['pinion teeth stress', 'slew bearing teeth stress'], [None, None], ['P232', 'Q232']],
     # output
-    'TOT.WEIGHT OF SLEWING PART  =': [[None, None, None], u1, ['sum([data[keys[i]][0][0] for i in range(9)])', 'sum([data[keys[i]][0][1] for i in range(9)])', 'sum([data[keys[i]][0][2] for i in range(9)])']],
+    'TOT.WEIGHT OF SLEWING PART  =': [[None, None], ['t', 'tm2'], ['sum([data[keys[i]][0][0] for i in range(9)])', 'sum([data[keys[i]][0][2] for i in range(9)])'], ['E35', 'I35']],
 
     #'POWER CALCULATION ( for 1 motor ) RIGA 84
-    'MOMENT OF INERTIA AT MOTOR SHAFT': [None, 'Kgm2', '(data["TOT.WEIGHT OF SLEWING PART  ="][0][2] * 1000 * (data["MAX BOOM SLEWING SPEED"][0][0] ** 2) / (data["NOMINAL MOTOR SPEED"][0][0] ** 2)) + data["MOTORS NUMBER"][0] * (data["MOTOR INERTIA ( of 1 drive )"][0] + data["GEARS AND BRAKE INERTIA ( of 1 drive )"][0])'],
-    'FRICTION TORQUE AT MOTOR SHAFT': [[None, None], ['Nm', 'kW'], ['data["TOT.WEIGHT OF SLEWING PART  ="][0][2] * data["FRICTION FACTOR"][0] * data["MAX BOOM SLEWING SPEED"][0][0] * data["SLEW BEARING PRIMITIVE DIAMETER"][0] / 2 / data["NOMINAL MOTOR SPEED"][0][0] / data["MECHANICAL EFFICIENCY"][0] / data["MOTORS NUMBER"][0]', 'data["FRICTION TORQUE AT MOTOR SHAFT"][0][0] / 1000 * data["NOMINAL MOTOR SPEED"][0][1]']],
-    'RATING WIND TORQUE AT MOTOR SHAFT': [[None, None], ['Nm', 'kW'], ['data["TOTAL WIND EXPOSED AREA"][0] * data["RATING WIND PRESSURE"][0][0] * data["MAX BOOM SLEWING SPEED"][0][0] * data["DISTANCE FROM THE POINT OF WIND FORCE AND THE ROTATION AXLE"][0] / data["NOMINAL MOTOR SPEED"][0][0] / data["MECHANICAL EFFICIENCY"][0] / data["MOTORS NUMBER"][0]', 'data["RATING WIND TORQUE AT MOTOR SHAFT"][0][0] / 1000 * data["NOMINAL MOTOR SPEED"][0][1]']],
-    ' MAX. TRAVELLING WIND  TORQUE AT MOTOR SHAFT': [[None, None], ['Nm', 'kW'], ['data["TOTAL WIND EXPOSED AREA"][0] * data["MAXIMUM WIND PRESSURE (TRAVELLING)"][0][0] * data["MAX BOOM SLEWING SPEED"][0][0] * data["DISTANCE FROM THE POINT OF WIND FORCE AND THE ROTATION AXLE"][0] / data["NOMINAL MOTOR SPEED"][0][0] / data["MECHANICAL EFFICIENCY"][0] / data["MOTORS NUMBER"][0]', 'data[" MAX. TRAVELLING WIND  TORQUE AT MOTOR SHAFT"][0][0] / 1000 * data["NOMINAL MOTOR SPEED"][0][1]']],
-    'ACCELERATION TORQUE AT MOTOR SHAFT': [[None, None], ['Nm', 'kW'], ['data["MOMENT OF INERTIA AT MOTOR SHAFT"][0] * data["NOMINAL MOTOR SPEED"][0][1] / data["ACCELERATION TIME"][0] / data["MOTORS NUMBER"][0] / data["MECHANICAL EFFICIENCY"][0]', 'data["ACCELERATION TORQUE AT MOTOR SHAFT"][0][0] / 1000 * data["NOMINAL MOTOR SPEED"][0][1]']],
-    'DIGGING TORQUE AT MOTOR SHAFT': [[None, None], ['Nm', 'kW'], ['data["TOTAL WIND EXPOSED AREA"][0] * data["MAXIMUM WIND PRESSURE (TRAVELLING)"][0][0] * data["MAX BOOM SLEWING SPEED"][0][0] * data["DISTANCE FROM THE POINT OF WIND FORCE AND THE ROTATION AXLE"][0] / data["NOMINAL MOTOR SPEED"][0][0] / data["MECHANICAL EFFICIENCY"][0] / data["MOTORS NUMBER"][0]', 'data[" MAX. TRAVELLING WIND  TORQUE AT MOTOR SHAFT"][0][0] / 1000 * data["NOMINAL MOTOR SPEED"][0][1]']],
-    'ABNORMAL DIGGING TORQUE AT MOTOR SHAFT': [[None, None], ['Nm', 'kW'], ['data["Digging force"][0][1] * data["bucket distance from and slewing axe"][0] * data["MAX BOOM SLEWING SPEED"][0][0] / data["MOTORS NUMBER"][0] / data["NOMINAL MOTOR SPEED"][0][0] / data["MECHANICAL EFFICIENCY"][0]', 'data["ABNORMAL DIGGING TORQUE AT MOTOR SHAFT"][0][0] / 1000 * data["NOMINAL MOTOR SPEED"][0][1]']],
+    'MOMENT OF INERTIA AT MOTOR SHAFT': [None, 'Kgm2', '(data["TOT.WEIGHT OF SLEWING PART  ="][0][1] * 1000 * (data["MAX BOOM SLEWING SPEED"][0][0] ** 2) / (data["NOMINAL MOTOR SPEED"][0][0] ** 2)) + data["MOTORS NUMBER"][0] * (data["MOTOR INERTIA ( of 1 drive )"][0] + data["GEARS AND BRAKE INERTIA ( of 1 drive )"][0])', 'F91'],
+    'FRICTION TORQUE AT MOTOR SHAFT': [[None, None], ['Nm', 'kW'], ['data["TOT.WEIGHT OF SLEWING PART  ="][0][1] * data["FRICTION FACTOR"][0] * data["MAX BOOM SLEWING SPEED"][0][0] * data["SLEW BEARING PRIMITIVE DIAMETER"][0] / 2 / data["NOMINAL MOTOR SPEED"][0][0] / data["MECHANICAL EFFICIENCY"][0] / data["MOTORS NUMBER"][0]', 'data["FRICTION TORQUE AT MOTOR SHAFT"][0][0] / 1000 * data["NOMINAL MOTOR SPEED"][0][1]'], ['F99', 'F102']],
+    'RATING WIND TORQUE AT MOTOR SHAFT': [[None, None], ['Nm', 'kW'], ['data["TOTAL WIND EXPOSED AREA"][0] * data["RATING WIND PRESSURE"][0][0] * data["MAX BOOM SLEWING SPEED"][0][0] * data["DISTANCE FROM THE POINT OF WIND FORCE AND THE ROTATION AXLE"][0] / data["NOMINAL MOTOR SPEED"][0][0] / data["MECHANICAL EFFICIENCY"][0] / data["MOTORS NUMBER"][0]', 'data["RATING WIND TORQUE AT MOTOR SHAFT"][0][0] / 1000 * data["NOMINAL MOTOR SPEED"][0][1]'], ['F109', 'F112']],
+    ' MAX. TRAVELLING WIND  TORQUE AT MOTOR SHAFT': [[None, None], ['Nm', 'kW'], ['data["TOTAL WIND EXPOSED AREA"][0] * data["MAXIMUM WIND PRESSURE (TRAVELLING)"][0][0] * data["MAX BOOM SLEWING SPEED"][0][0] * data["DISTANCE FROM THE POINT OF WIND FORCE AND THE ROTATION AXLE"][0] / data["NOMINAL MOTOR SPEED"][0][0] / data["MECHANICAL EFFICIENCY"][0] / data["MOTORS NUMBER"][0]', 'data[" MAX. TRAVELLING WIND  TORQUE AT MOTOR SHAFT"][0][0] / 1000 * data["NOMINAL MOTOR SPEED"][0][1]'], ['F119', 'F122']],
+    'ACCELERATION TORQUE AT MOTOR SHAFT': [[None, None], ['Nm', 'kW'], ['data["MOMENT OF INERTIA AT MOTOR SHAFT"][0] * data["NOMINAL MOTOR SPEED"][0][1] / data["ACCELERATION TIME"][0] / data["MOTORS NUMBER"][0] / data["MECHANICAL EFFICIENCY"][0]', 'data["ACCELERATION TORQUE AT MOTOR SHAFT"][0][0] / 1000 * data["NOMINAL MOTOR SPEED"][0][1]'], ['F130', 'F133']],
+    'DIGGING TORQUE AT MOTOR SHAFT': [[None, None], ['Nm', 'kW'], ['data["TOTAL WIND EXPOSED AREA"][0] * data["MAXIMUM WIND PRESSURE (TRAVELLING)"][0][0] * data["MAX BOOM SLEWING SPEED"][0][0] * data["DISTANCE FROM THE POINT OF WIND FORCE AND THE ROTATION AXLE"][0] / data["NOMINAL MOTOR SPEED"][0][0] / data["MECHANICAL EFFICIENCY"][0] / data["MOTORS NUMBER"][0]', 'data[" MAX. TRAVELLING WIND  TORQUE AT MOTOR SHAFT"][0][0] / 1000 * data["NOMINAL MOTOR SPEED"][0][1]'], ['H146', 'G150']],
+    'ABNORMAL DIGGING TORQUE AT MOTOR SHAFT': [[None, None], ['Nm', 'kW'], ['data["Digging force"][0][1] * data["bucket distance from and slewing axe"][0] * data["MAX BOOM SLEWING SPEED"][0][0] / data["MOTORS NUMBER"][0] / data["NOMINAL MOTOR SPEED"][0][0] / data["MECHANICAL EFFICIENCY"][0]', 'data["ABNORMAL DIGGING TORQUE AT MOTOR SHAFT"][0][0] / 1000 * data["NOMINAL MOTOR SPEED"][0][1]'], ['H161', 'G165']],
 
     # REDUCTION GEAR TORQUES
     'TOTAL REDUCTION RATIO': [None, '-', 'data["NOMINAL MOTOR SPEED"][0][0] / data["MAX BOOM SLEWING SPEED"][0][0]', 'G173'],
     'PINION DIAMETER':  [None, 'mm', 'data["MODULE"][0] * data["PINION TEET NUMBER"][0]', 'G179'],
-    'slewing bearing diameter':  [[None, None], ['mm', 'boolean'], ['data["slewing bearing diameter"][0] * 1000', '"OK" if (data["SLEW BEARING TEETH NUMBER"][0] * data["MODULE"][0]) == data["slewing bearing diameter"][0] else "check teeth number"'], ['G183', 'I183']],
+    'slewing bearing diameter':  [[None, None], ['mm', 'boolean'], ['data["SLEW BEARING PRIMITIVE DIAMETER"][0] * 1000', '"OK" if (data["SLEW BEARING TEETH NUMBER"][0] * data["MODULE"][0]) == data["slewing bearing diameter"][0] else "check teeth number"'], ['G183', 'I183']],
     'slew bearing / pinion ratio':  [None, '-', 'data["SLEW BEARING PRIMITIVE DIAMETER"][0] / data["PINION DIAMETER"][0]', 'G185'],
     'gear box ratio':  [None, '-', 'data["TOTAL REDUCTION RATIO"][0] / data["slew bearing / pinion ratio"][0]', 'G187'],
 
@@ -183,17 +184,17 @@ for formula in formule_errate:
         print(f'{data[formula[1]][2]} - {formula[1]}')
         data[formula[1]][0] = eval(data[formula[1]][2]) # calcolo
 
-# stampa dei valori incolonnati
-print("{:<70} {:<10} {:<10}".format("Key", "Value", "Unit")) # header con titoli delle colonne
-print('----------------------------------------------------------------------------------------')
 for key, value in data.items():
-    if type(value[0]) is list:
-        for i in range(len(data[key][0])):
-            if type(value[0][i]) is float:
-                formatted_value = '{:.3f}'.format(value[0][i])
-                print("{:<70} {:<10} {:<10}".format(key, formatted_value, value[1][i]))
-    elif type(value[0]) is float:
-        formatted_value = '{:.3f}'.format(value[0])
-        print("{:<70} {:<10} {:<10}".format(key, formatted_value, value[1]))
-    else:
-        print("{:<70} {:<10} {:<10}".format(key, value[0], value[1]))
+    print(f"{key}: {value}")
+
+# inserimento dei dati su file Excel e salvataggio di un nuovo file
+trav_file = load_workbook('templateBoomSlewing.xlsx') # carico il file Excel completo
+trav_sheet = trav_file.active # carico il foglio singolo, l'unico che è presente, TRAVELLING
+for key in data.keys():
+    print(key)
+    if type(data[key][3]) is list: # controllo se ha più di una cella
+        for i in range(len(data[key][3])): # per ogni posizione
+            trav_sheet[data[key][3][i]].value = data[key][0][i] # inserisco il valore
+    else: # se non è una lista
+        trav_sheet[data[key][3]].value = data[key][0]
+trav_file.save('BoomSlewing_nuovo.xlsx') # salvo il nuovo file
