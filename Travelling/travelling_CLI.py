@@ -7,12 +7,15 @@ I valori delle chiavi hanno un significato basato sulla posizione:
     - 2 = formula di ricavo del valore (se è None, è un dato di input)
     - 3 = posizione nel file Excel
 '''
+# LIBRERIE ----------------------------------------------------------------------
 import math
 from openpyxl import Workbook, load_workbook
+from datetime import datetime
 import os, shutil
 import tkinter as tk
 from tkinter import filedialog
 
+# VARIABILI ----------------------------------------------------------------------
 cs = ': '
 E15 = 'Machine dead load'
 E16 = 'Tripper / trailer dead load'
@@ -183,6 +186,11 @@ D196 = t_A190 + cs + 'load of each rail clamp'
 current_line = 0 # inizializza l'indice della riga corrente a 0
 
 scelta = 0 # la scelta per il menù che si presenterà all'avvio del programma
+
+data_corrente = ''
+
+trav_file = load_workbook('Travelling.xlsx') # carico il file Travelling.xlsx completo
+trav_sheet = trav_file.active # carico il foglio singolo, l'unico che è presente, TRAVELLING
 
 data = \
 {
@@ -551,51 +559,20 @@ data = \
            'D196']
 }
 
-# richiesta modalità di input dati
-print('Choose the data input mode:\n '
-      '\t1. manual input: each value is entered by the user, one by one.\n'
-      '\t2. file input: a text file is read to retrieve each value, one per line.\n')
-scelta = int(input('Your choice: '))
-
-# richiesta dati di input manuale
-if scelta == 1:
-    print('Insert every values one by one as requested.\n')
-    for key in data.keys(): # cerca i dati di input controllando il terzo valore
-        if type(data[key][2]) is list: # controllo se ha più di un dato
-            for i in range(len(data[key][2])): # cerco None nella lista
-                if not data[key][2][i]: # se lo trovo
-                    try: # prendo l'input
-                        if data[key][1][i] == '':
-                            data[key][0][i] = float(input(key + ' = '))
-                        else:
-                            data[key][0][i] = float(input(key + ' [' + data[key][1][i] + '] = '))
-                    except ValueError: # se non viene inserito il valore corretto
-                        print('\nLast input data is not valid.')
-                        input('\nPress \'enter\' key to close the program.')
-                        exit(-1) # fermo il programma
-        else: # se è un singolo valore
-            if not data[key][2]:  # controllo se è dato di input
-                try: # se lo è
-                    if data[key][1] == '':
-                        data[key][0] = float(input(key + ' = '))
-                    else:
-                        data[key][0] = float(input(key + ' [' + data[key][1] + '] = '))
-                except ValueError:
-                    print('\nLast input data is not valid.')
-                    input('\nPress \'enter\' key to close the program.')
-                    exit(-1)
-# lettura dati input da file
-elif scelta == 2:
+# FUNZIONI ----------------------------------------------------------------------
+# legge un file txt interno, ormai inutile poiché utilizzata per test
+def leggi_file_txt():
     print('\nReading file...')
     try:
-        with open('data_sample.txt', 'r') as f: # apre il file di testo e leggi le righe
-            lines = f.readlines() # crea una lista, ogni riga è un elemento
+        with open('data_sample.txt', 'r') as f:  # apre il file di testo e leggi le righe
+            lines = f.readlines()  # crea una lista, ogni riga è un elemento
             for key in data.keys():
                 if type(data[key][2]) is list:
                     for i in range(len(data[key][2])):
                         if not data[key][2][i]:
                             try:
-                                data[key][0][i] = float(lines[current_line].strip()) # legge la riga corrente e incrementa l'indice della riga corrente
+                                data[key][0][i] = float(lines[
+                                                            current_line].strip())  # legge la riga corrente e incrementa l'indice della riga corrente
                                 current_line += 1
                             except ValueError:
                                 print('\nFile input data is not valid at line ' + str(current_line) + '.')
@@ -604,7 +581,8 @@ elif scelta == 2:
                 else:
                     if not data[key][2]:
                         try:
-                            data[key][0] = float(lines[current_line].strip()) # legge la riga corrente e incrementa l'indice della riga corrente
+                            data[key][0] = float(lines[
+                                                     current_line].strip())  # legge la riga corrente e incrementa l'indice della riga corrente
                             current_line += 1
                         except ValueError:
                             print('\nFile input data is not valid at line ' + str(current_line) + '.')
@@ -615,48 +593,90 @@ elif scelta == 2:
         input('\nPress \'enter\' key to close the program.')
         exit(-1)
 
-# calcolo dei valori di output
-print('\nCalculating ouput values...\n')
-for key in data.keys(): # cerca i dati di output
-    if type(data[key][2]) is list: # controllo se ha più di un dato
-        for i in range(len(data[key][2])): # cerco formule nella lista
-            if data[key][2][i]: # se trovo la formula
-                data[key][0][i] = eval(data[key][2][i]) # calcolo con eval il dato di output
-    elif data[key][2]: # se è un valore singolo, controllo che sia una formula
-        data[key][0] = eval(data[key][2]) # calcolo
+# utile solo per applicazione da terminale
+def richiedi_dati_input():
+    print('\nInsert every values one by one as requested.\n')
+    for key in data.keys():  # cerca i dati di input controllando il terzo valore
+        if type(data[key][2]) is list:  # controllo se ha più di un dato
+            for i in range(len(data[key][2])):  # cerco None nella lista
+                if not data[key][2][i]:  # se lo trovo
+                    try:  # prendo l'input
+                        if data[key][1][i] == '':
+                            data[key][0][i] = float(input(key + ' = '))
+                        else:
+                            data[key][0][i] = float(input(key + ' [' + data[key][1][i] + '] = '))
+                    except ValueError:  # se non viene inserito il valore corretto
+                        print('\nLast input data is not valid.')
+                        input('\nPress \'enter\' key to close the program.')
+                        exit(-1)  # fermo il programma
+        else:  # se è un singolo valore
+            if not data[key][2]:  # controllo se è dato di input
+                try:  # se lo è
+                    if data[key][1] == '':
+                        data[key][0] = float(input(key + ' = '))
+                    else:
+                        data[key][0] = float(input(key + ' [' + data[key][1] + '] = '))
+                except ValueError:
+                    print('\nLast input data is not valid.')
+                    input('\nPress \'enter\' key to close the program.')
+                    exit(-1)
 
+# calcola i valori di output
+def calcola_dati_output():
+    print('\nCalculating ouput values...')
+    for key in data.keys(): # cerca i dati di output
+        if type(data[key][2]) is list: # controllo se ha più di un dato
+            for i in range(len(data[key][2])): # cerco formule nella lista
+                if data[key][2][i]: # se trovo la formula
+                    data[key][0][i] = eval(data[key][2][i]) # calcolo con eval il dato di output
+        elif data[key][2]: # se è un valore singolo, controllo che sia una formula
+            data[key][0] = eval(data[key][2]) # calcolo
 
 # stampa dei valori incolonnati
-print("{:<150} {:<10} {:<10}".format("Key", "Value", "Unit")) # header con titoli delle colonne
-print('---------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
-for key, value in data.items():
-    if type(value[0]) is list:
-        for i in range(len(data[key][0])):
-            if type(value[0][i]) is float:
-                formatted_value = '{:.3f}'.format(value[0][i])
-                print("{:<150} {:<10} {:<10}".format(key, formatted_value, value[1][i]))
-    elif type(value[0]) is float:
-        formatted_value = '{:.3f}'.format(value[0])
-        print("{:<150} {:<10} {:<10}".format(key, formatted_value, value[1]))
-    else:
-        print("{:<150} {:<10} {:<10}".format(key, value[0], value[1]))
+def stampa_dati():
+    print("{:<150} {:<10} {:<10}".format("Key", "Value", "Unit")) # header con titoli delle colonne
+    print('---------------------------------------------------------------------------------------------------------------------------------------------------------------------------')
+    for key, value in data.items():
+        if type(value[0]) is list:
+            for i in range(len(data[key][0])):
+                if type(value[0][i]) is float:
+                    formatted_value = '{:.3f}'.format(value[0][i])
+                    print("{:<150} {:<10} {:<10}".format(key, formatted_value, value[1][i]))
+        elif type(value[0]) is float:
+            formatted_value = '{:.3f}'.format(value[0])
+            print("{:<150} {:<10} {:<10}".format(key, formatted_value, value[1]))
+        else:
+            print("{:<150} {:<10} {:<10}".format(key, value[0], value[1]))
 
-# inserimento dei dati su file Excel e salvataggio di un nuovo file
-trav_file = load_workbook('Travelling.xlsx') # carico il file Excel completo
-trav_sheet = trav_file.active # carico il foglio singolo, l'unico che è presente, TRAVELLING
-for key in data.keys():
-    if type(data[key][3]) is list: # controllo se ha più di una cella
-        for i in range(len(data[key][3])): # per ogni posizione
-            trav_sheet[data[key][3][i]].value = data[key][0][i] # inserisco il valore
-    else: # se non è una lista
-        trav_sheet[data[key][3]].value = data[key][0]
-trav_file.save('Travelling_new.xlsx')
+# inserimento dei dati su file Excel
+def inserisci_dati_excel():
+    for key in data.keys():
+        if type(data[key][3]) is list: # controllo se ha più di una cella
+            for i in range(len(data[key][3])): # per ogni posizione
+                trav_sheet[data[key][3][i]].value = data[key][0][i] # inserisco il valore
+        else: # se non è una lista
+            trav_sheet[data[key][3]].value = data[key][0]
 
-# richiesta directory e spostamento file nella stessa --> V1
-ex_file_path = os.path.join(os.getcwd(), 'Travelling_new.xlsx') # ottengo il percorso del file
-root = tk.Tk() # creo la finestra principale di tkinter
-root.withdraw() # la nascondo
-new_dir_path = filedialog.askdirectory() # chiedo dove salvare il file
-shutil.move(ex_file_path, os.path.join(new_dir_path, "Travelling_new.xlsx"))
-print('\nThe new Travelling file was created in ' +  new_dir_path)
-input('\nPress \'enter\' key to close the program.')
+# richiesta directory e salvataggio del file nella stessa
+def salva_file_excel():
+    data_corrente = datetime.now().strftime('%Y-%m-%d__%H-%M')
+    trav_file_name = 'Travelling__' + data_corrente + '.xlsx'
+    root = tk.Tk()  # creo la finestra principale di tkinter
+    root.withdraw()  # la nascondo
+    print('\nSelect the folder to save the Excel file.')
+    new_dir_path = filedialog.askdirectory()  # chiedo dove salvare il file
+    new_file_path = os.path.join(new_dir_path, trav_file_name)  # salvo il percorso del file
+    trav_file.save(new_file_path)  # salvataggio del file
+    print('\nThe new Travelling file was created in ' + new_dir_path)
+    input('\nPress \'enter\' key to close the program.')
+
+# unisce le funzioni di inserimento dati nel file excel e del suo salvataggio nella directory scelta da utente
+def crea_file_excel():
+    inserisci_dati_excel()
+    salva_file_excel()
+
+# ELABORAZIONE ----------------------------------------------------------------------
+print('-- TRAVELLING EXCEL FILE CREATOR --')
+richiedi_dati_input()
+calcola_dati_output()
+crea_file_excel()
