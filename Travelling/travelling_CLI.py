@@ -11,7 +11,7 @@ I valori delle chiavi hanno un significato basato sulla posizione:
 import math
 from openpyxl import Workbook, load_workbook
 from datetime import datetime
-import os, shutil
+import os, shutil, sys
 import tkinter as tk
 from tkinter import filedialog
 
@@ -189,8 +189,13 @@ scelta = 0 # la scelta per il menù che si presenterà all'avvio del programma
 
 data_corrente = ''
 
-trav_file = load_workbook('Travelling.xlsx') # carico il file Travelling.xlsx completo
-trav_sheet = trav_file.active # carico il foglio singolo, l'unico che è presente, TRAVELLING
+try:
+    trav_file = load_workbook('Travelling.xlsx') # carico il file Travelling.xlsx completo
+    trav_sheet = trav_file.active # carico il foglio singolo, l'unico che è presente, TRAVELLING
+except FileNotFoundError:
+    print('\nThe blank Travelling Excel file does not exist.')
+    input('\nPress \'enter\' key to close the program.')
+    exit(-1)
 
 data = \
 {
@@ -571,8 +576,7 @@ def leggi_file_txt():
                     for i in range(len(data[key][2])):
                         if not data[key][2][i]:
                             try:
-                                data[key][0][i] = float(lines[
-                                                            current_line].strip())  # legge la riga corrente e incrementa l'indice della riga corrente
+                                data[key][0][i] = float(lines[current_line].strip())  # legge la riga corrente e incrementa l'indice della riga corrente
                                 current_line += 1
                             except ValueError:
                                 print('\nFile input data is not valid at line ' + str(current_line) + '.')
@@ -581,8 +585,7 @@ def leggi_file_txt():
                 else:
                     if not data[key][2]:
                         try:
-                            data[key][0] = float(lines[
-                                                     current_line].strip())  # legge la riga corrente e incrementa l'indice della riga corrente
+                            data[key][0] = float(lines[current_line].strip())  # legge la riga corrente e incrementa l'indice della riga corrente
                             current_line += 1
                         except ValueError:
                             print('\nFile input data is not valid at line ' + str(current_line) + '.')
@@ -669,6 +672,7 @@ def salva_file_excel():
     trav_file.save(new_file_path)  # salvataggio del file
     print('\nThe new Travelling file was created in ' + new_dir_path)
     input('\nPress \'enter\' key to close the program.')
+    exit(1)
 
 # unisce le funzioni di inserimento dati nel file excel e del suo salvataggio nella directory scelta da utente
 def crea_file_excel():
