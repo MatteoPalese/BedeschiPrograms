@@ -16,6 +16,19 @@ from tkinter import *
 from tkinter import filedialog
 
 # VARIABILI ----------------------------------------------------------------------
+current_line = 0 # inizializza l'indice della riga corrente a 0
+
+scelta = 0 # la scelta per il menù che si presenterà all'avvio del programma
+
+data_corrente = ''
+
+text_fields = []
+
+dati_input = []
+
+n_riga = 0
+i = 0
+
 cs = ': '
 E15 = 'Machine dead load'
 E16 = 'Tripper / trailer dead load'
@@ -66,7 +79,7 @@ E62F62 = t_A61 + cs + 'during normal operation, travelling at c1'
 E63F63 = t_A61 + cs + 'during travelling at c2'
 
 t_A65 = 'Wind force'
-E66F66 = t_A65 + cs + 'Max during normal operation (v1), travelling at c1'
+E66F66 = t_A65 + cs + 'max during normal operation (v1), travelling at c1'
 E67F67 = t_A65 + cs + 'during travelling to parking position (v2), travelling at c2'
 E68 = t_A65 + cs + 'during storm wind, out of service (v3), static condition'
 
@@ -168,7 +181,7 @@ D177 = t_A173 + cs + 'Acceleration'
 D178 = t_A173 + cs + 'Stopping time at c2 speed'
 D179 = t_A173 + cs + 'Stopping distance'
 
-t_A181 = 'Braking design deceleration time with v2 wind speed and yard slope during relocation'
+t_A181 = 'Braking design deceleration time during relocation (v2 wind speed)'
 D182 = t_A181 + cs + 'design deceleration time'
 D183 = t_A181 + cs + 'Design acceleration at c2 speed'
 D184 = t_A181 + cs + 'Net force'
@@ -183,19 +196,10 @@ D194 = t_A190 + cs + 'max force for each rail clamp with 2/3 of brakes in functi
 D195 = t_A190 + cs + 'number of rail clamps'
 D196 = t_A190 + cs + 'load of each rail clamp'
 
-current_line = 0 # inizializza l'indice della riga corrente a 0
-
-scelta = 0 # la scelta per il menù che si presenterà all'avvio del programma
-
-data_corrente = ''
-
-try:
-    trav_file = load_workbook('Travelling.xlsx') # carico il file Travelling.xlsx completo
-    trav_sheet = trav_file.active # carico il foglio singolo, l'unico che è presente, TRAVELLING
-except FileNotFoundError:
-    print('\nThe blank Travelling Excel file does not exist.')
-    input('\nPress \'enter\' key to close the program.')
-    exit(-1)
+titoli = [[t_A61 + cs, False], [t_A65 + cs, False],  [t_A70 + cs, False], [t_A83 + cs, False],
+          [t_A90 + cs, False], [t_A103 + cs, False], [t_A114 + cs, False], [t_A125 + cs, False],
+          [t_A142 + cs, False], [t_A152 + cs, False], [t_A165 + cs, False], [t_A173 + cs, False],
+          [t_A181 + cs, False], [t_A190 + cs, False]]
 
 data = \
 {
@@ -664,7 +668,7 @@ def inserisci_dati_excel():
 def salva_file_excel():
     data_corrente = datetime.now().strftime('%Y-%m-%d__%H-%M')
     trav_file_name = 'Travelling__' + data_corrente + '.xlsx'
-    root = tk.Tk()  # creo la finestra principale di tkinter
+    root = Tk()  # creo la finestra principale di tkinter
     root.withdraw()  # la nascondo
     print('\nSelect the folder to save the Excel file.')
     new_dir_path = filedialog.askdirectory()  # chiedo dove salvare il file
@@ -679,37 +683,55 @@ def crea_file_excel():
     inserisci_dati_excel()
     salva_file_excel()
 
+# i due eventi relativi alla finestra associati al ridimensionamento e alla rotella del mouse
 def on_configure(event):
     canvas.configure(scrollregion=canvas.bbox("all"))
-
 def on_mousewheel(event):
     canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
 
-def aggiungiRiga(key, u, i):
-    text_fields.append(Entry(input_frame))
-    Label(input_frame, text=key + '[' + u + ']', font=('Times New Roman', 12)).grid(row=i+1, column=0, sticky="W")
-    text_fields[i].grid(row=i+1, column=1, sticky='W', padx=0, pady=10)
+# aggiunge una riga nella finestra con il formato --> Distanza [   ] m
+def aggiungi_riga(desc, unità, n_riga):
+    text_fields.append(Entry(input_frame, width=10, background='#e8f0ff'))
+    Label(input_frame, text=desc, font='Helvetica 12', background='white', padx=10).grid(row=n_riga+1, column=0, sticky="W")
+    text_fields[-1].grid(row=n_riga+1, column=1, sticky='W', padx=0, pady=10)
+    Label(input_frame, text=unità, font='Helvetica 12', background='white').grid(row=n_riga+1, column=2, sticky="W", padx=10)
 
+# aggiunge un titolo nella finestra
+def aggiungi_titolo(titolo, n_riga):
+    Label(input_frame, text=titolo, font=('Helvetica', 12, 'bold'), background='white', anchor='w', pady=10).grid(row=n_riga+1, column=0, padx=0, pady=0, sticky='w')
 
+# ???
 def submit(texts):
-    numeri = []
+    print('\nIl tasto funziona, tranquillo.')
+    return
+
     for text in texts:
         try:
             numeri.append(float(text.get()))
         except ValueError:
             print('ERRORE NEI DATI!')
             return
-    creaExcel(numeri)
+    crea_file_excel()
 
 
 # ELABORAZIONE ----------------------------------------------------------------------
 print('-- TRAVELLING EXCEL FILE CREATOR --')
+
+# caricamento del file Travelling.xlsx vuoto per riempimento futuro
+try:
+    trav_file = load_workbook('Travelling.xlsx') # carico il file Travelling.xlsx completo
+    trav_sheet = trav_file.active # carico il foglio singolo, l'unico che è presente, TRAVELLING
+except FileNotFoundError:
+    print('\nThe blank Travelling Excel file does not exist.')
+    input('\nPress \'enter\' key to close the program.')
+    exit(-1)
+
+# creazione della finestra dotata di scrollbar
 window = Tk()
-window.geometry('800x800')
+window.geometry('650x600')
 window.resizable(False, False)
 window.title('Travelling Excel File Creator')
 window.grid_columnconfigure(0, weight=1)
-text_fields = []
 main_frame = Frame(window)
 main_frame.pack(fill=BOTH, expand=1)
 canvas_frame = Frame(main_frame)
@@ -720,25 +742,46 @@ scrollbar = Scrollbar(canvas_frame, orient=VERTICAL, command=canvas.yview)
 scrollbar.pack(side=RIGHT, fill=Y)
 canvas.configure(yscrollcommand=scrollbar.set)
 input_frame = Frame(canvas)
+input_frame.pack(side=TOP, fill=X, padx=10, pady=10)
+input_frame.configure(background='white')
 canvas.create_window((0, 0), window=input_frame, anchor="nw")
-submit_button = Button(input_frame, command=lambda: submit(text_fields), background='gray', text='SUBMIT')
 canvas.bind("<Configure>", on_configure)
 canvas.bind_all("<MouseWheel>", on_mousewheel)
-Label(input_frame, text='TRAVELLING', fg='red', font='Helvetica 24 bold').grid(row=0, column=0, sticky="WE", columnspan=2)
 
-#inserimento nella finestra di ogni chiave
-j = 0
+# posizionamento titolo
+Label(input_frame, text='Travelling Excel File Creator', fg='#002975', font='Helvetica 22 bold', background='white').grid(row=0, column=0, padx=0, pady=15, columnspan=3)
+
+#inserimento di ogni riga nella finestra
 for key in data.keys():  # cerca i dati di input controllando il terzo valore
     if type(data[key][2]) is list:  # controllo se ha più di un dato
-        for i in range(len(data[key][2])):  # cerco None nella lista
+        for i in range(len(data[key][2])):  # cerco i dati di input
             if not data[key][2][i]:  # se lo trovo
-                aggiungiRiga(key, data[key][1][j], j)
-                j += 1
+                for j in range(len(titoli)):
+                    if titoli[j][0] in key:
+                        if titoli[j][1] == False:
+                            aggiungi_titolo(titoli[j][0].replace(cs, ''), n_riga)
+                            n_riga += 1
+                            titoli[j][1] = True
+                        new_key = key.replace(titoli[j][0], '')
+                        aggiungi_riga(new_key, data[key][1][i], n_riga)  # aggiungo la riga
+                        n_riga += 1  # aumento il contatore delle righe
+                        break
     else:  # se è un singolo valore
-        if not data[key][2]:  # controllo se è dato di input
-            aggiungiRiga(key, data[key][1][j], j)
-            j += 1
+        if not data[key][2]:  # controllo se è un dato di input
+            for j in range(len(titoli)):
+                if titoli[j][0] in key:
+                    if titoli[j][1] == False:
+                        aggiungi_titolo(titoli[j][0].replace(cs, ''), n_riga)
+                        n_riga += 1
+                        titoli[j][1] = True
+                    new_key = key.replace(titoli[j][0], '')
+                    aggiungi_riga(new_key, data[key][1], n_riga)  # aggiungo la riga
+                    n_riga += 1  # aumento il contatore delle righe
+                    break
 
-submit_button.grid(row=i+1, column=0, sticky="WE", columnspan=2, pady=10, padx=10)
+submit_button = Button(input_frame, command=lambda: submit(text_fields), background='#b3deff', text='CREA FILE EXCEL', font='Helvetica 12 bold', width=20, height=1)
+submit_button.grid(row=n_riga + 1, column=0, sticky="s", padx=15, pady=20, columnspan=3)
 
 window.mainloop()
+
+exit(0)
