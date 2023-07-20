@@ -16,18 +16,11 @@ from tkinter import *
 from tkinter import filedialog
 
 # VARIABILI ----------------------------------------------------------------------
-current_line = 0 # inizializza l'indice della riga corrente a 0
-
-scelta = 0 # la scelta per il menù che si presenterà all'avvio del programma
-
-data_corrente = ''
-
-text_fields = []
-
-dati_input = []
-
-n_riga = 0
+n_riga = 1 # per la GUI
 i = 0
+data_corrente = ''
+entry_fields = [] # lista di oggetti Entry
+input_list = [] # lista di valori float da inserire nella struttura
 
 cs = ': '
 E15 = 'Machine dead load'
@@ -244,7 +237,7 @@ data = \
     E41: [None, 'kg', None, 'E41'],
     E42: [None, 'm', None, 'E42'],
     E43: [None, '', None, 'E43'],
-    E44: [None, '', None, 'E44'],
+    E44: [None, 'kg', None, 'E44'],
     E45: [None, 'm', None, 'E45'],
     E46: [None, '', None, 'E46'],
     E47: [None, 'kg/m',
@@ -570,7 +563,8 @@ data = \
 
 # FUNZIONI ----------------------------------------------------------------------
 # legge un file txt interno, ormai inutile poiché utilizzata per test
-def leggi_file_txt():
+def leggi_dati_txt():
+    current_line = 0
     print('\nReading file...')
     try:
         with open('data_sample.txt', 'r') as f:  # apre il file di testo e leggi le righe
@@ -599,6 +593,23 @@ def leggi_file_txt():
         print('\nThe file with input data does not exist.')
         input('\nPress \'enter\' key to close the program.')
         exit(-1)
+    return
+
+# prende una lista di dati di input e li inserisce uno ad uno all'interno della struttura
+def leggi_dati_lista(input_data_list):
+    index = 0
+    print('\nTaking input data from list...')
+    for key in data.keys():
+        if type(data[key][2]) is list:
+            for i in range(len(data[key][2])):
+                if not data[key][2][i]:
+                    data[key][0][i] = input_data_list[index]
+                    index += 1
+        elif not data[key][2]:
+            data[key][0] = input_data_list[index]
+            index += 1
+    print('\nHo finito di calcolare.')
+    return
 
 # utile solo per applicazione da terminale
 def richiedi_dati_input():
@@ -627,9 +638,11 @@ def richiedi_dati_input():
                     print('\nLast input data is not valid.')
                     input('\nPress \'enter\' key to close the program.')
                     exit(-1)
+    return
 
 # calcola i valori di output
 def calcola_dati_output():
+    msg.config(text='')
     print('\nCalculating ouput values...')
     for key in data.keys(): # cerca i dati di output
         if type(data[key][2]) is list: # controllo se ha più di un dato
@@ -638,6 +651,7 @@ def calcola_dati_output():
                     data[key][0][i] = eval(data[key][2][i]) # calcolo con eval il dato di output
         elif data[key][2]: # se è un valore singolo, controllo che sia una formula
             data[key][0] = eval(data[key][2]) # calcolo
+    return
 
 # stampa dei valori incolonnati
 def stampa_dati():
@@ -666,22 +680,28 @@ def inserisci_dati_excel():
 
 # richiesta directory e salvataggio del file nella stessa
 def salva_file_excel():
-    data_corrente = datetime.now().strftime('%Y-%m-%d__%H-%M')
-    trav_file_name = 'Travelling__' + data_corrente + '.xlsx'
+    data_corrente = datetime.now().strftime('__%Y-%m-%d__%H-%M')
+    trav_file_name = 'Travelling' + data_corrente + '.xlsx'
     root = Tk()  # creo la finestra principale di tkinter
     root.withdraw()  # la nascondo
-    print('\nSelect the folder to save the Excel file.')
     new_dir_path = filedialog.askdirectory()  # chiedo dove salvare il file
     new_file_path = os.path.join(new_dir_path, trav_file_name)  # salvo il percorso del file
     trav_file.save(new_file_path)  # salvataggio del file
-    print('\nThe new Travelling file was created in ' + new_dir_path)
-    input('\nPress \'enter\' key to close the program.')
-    exit(1)
+    if new_dir_path == '':
+        msg.config(text='File was not created.')
+    else:
+        msg.config(text='File created in ' + new_dir_path + '.')
 
 # unisce le funzioni di inserimento dati nel file excel e del suo salvataggio nella directory scelta da utente
-def crea_file_excel():
-    inserisci_dati_excel()
-    salva_file_excel()
+def crea_file_excel(entry_fields_list, input_data_list):
+    try:
+        submit(entry_fields_list)
+        leggi_dati_lista(input_data_list)
+        calcola_dati_output()
+        inserisci_dati_excel()
+        salva_file_excel()
+    except (ValueError, IndexError):
+        print('Fermo il flusso del pulsante.')
 
 # i due eventi relativi alla finestra associati al ridimensionamento e alla rotella del mouse
 def on_configure(event):
@@ -690,29 +710,29 @@ def on_mousewheel(event):
     canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
 
 # aggiunge una riga nella finestra con il formato --> Distanza [   ] m
-def aggiungi_riga(desc, unità, n_riga):
-    text_fields.append(Entry(input_frame, width=10, background='#e8f0ff'))
-    Label(input_frame, text=desc, font='Helvetica 12', background='white', padx=10).grid(row=n_riga+1, column=0, sticky="W")
-    text_fields[-1].grid(row=n_riga+1, column=1, sticky='W', padx=0, pady=10)
-    Label(input_frame, text=unità, font='Helvetica 12', background='white').grid(row=n_riga+1, column=2, sticky="W", padx=10)
+def aggiungi_riga(desc, unità, riga):
+    entry_fields.append(Entry(input_frame, font='Helvetica 12', width=10, background='#e8f0ff'))
+    Label(input_frame, text=desc, font='Helvetica 12', background='white', padx=10).grid(row=riga, column=0, sticky="W")
+    entry_fields[-1].grid(row=riga, column=1, sticky='W', padx=0, pady=10)
+    Label(input_frame, text=unità, font='Helvetica 12', background='white').grid(row=riga, column=2, sticky="W", padx=10)
+    return riga+1
 
 # aggiunge un titolo nella finestra
-def aggiungi_titolo(titolo, n_riga):
-    Label(input_frame, text=titolo, font=('Helvetica', 12, 'bold'), background='white', anchor='w', pady=10).grid(row=n_riga+1, column=0, padx=0, pady=0, sticky='w')
+def aggiungi_titolo(titolo, riga):
+    Label(input_frame, text=titolo, font='Helvetica 12 bold', background='white', anchor='w', pady=10).grid(row=riga, column=0, padx=5, pady=0, sticky='w')
+    return riga+1
 
-# ???
+# inserisce in una lista i dati che l'utente ha scritto nei vari campi di input
 def submit(texts):
-    print('\nIl tasto funziona, tranquillo.')
-    return
-
-    for text in texts:
+    input_list.clear()
+    for i, text in enumerate(texts): # itero per gli oggetti Entry
         try:
-            numeri.append(float(text.get()))
+            input_list.append(float(text.get())) # prendo il loro valore
+            entry_fields[i].config(background='#e8f0ff')
         except ValueError:
-            print('ERRORE NEI DATI!')
-            return
-    crea_file_excel()
-
+            msg.config(text='Some values are missing or not valid.')
+            entry_fields[i].config(background='#ff8080')
+    return
 
 # ELABORAZIONE ----------------------------------------------------------------------
 print('-- TRAVELLING EXCEL FILE CREATOR --')
@@ -728,7 +748,7 @@ except FileNotFoundError:
 
 # creazione della finestra dotata di scrollbar
 window = Tk()
-window.geometry('650x600')
+window.geometry('700x600')
 window.resizable(False, False)
 window.title('Travelling Excel File Creator')
 window.grid_columnconfigure(0, weight=1)
@@ -753,35 +773,36 @@ Label(input_frame, text='Travelling Excel File Creator', fg='#002975', font='Hel
 
 #inserimento di ogni riga nella finestra
 for key in data.keys():  # cerca i dati di input controllando il terzo valore
+    aggiunto = False
     if type(data[key][2]) is list:  # controllo se ha più di un dato
         for i in range(len(data[key][2])):  # cerco i dati di input
             if not data[key][2][i]:  # se lo trovo
                 for j in range(len(titoli)):
                     if titoli[j][0] in key:
                         if titoli[j][1] == False:
-                            aggiungi_titolo(titoli[j][0].replace(cs, ''), n_riga)
-                            n_riga += 1
+                            n_riga = aggiungi_titolo(titoli[j][0].replace(cs, ''), n_riga)
                             titoli[j][1] = True
                         new_key = key.replace(titoli[j][0], '')
-                        aggiungi_riga(new_key, data[key][1][i], n_riga)  # aggiungo la riga
-                        n_riga += 1  # aumento il contatore delle righe
-                        break
+                        n_riga = aggiungi_riga(new_key, data[key][1][i], n_riga)  # aggiungo la riga
+                        aggiunto = True
+                if aggiunto == False:
+                    n_riga = aggiungi_riga(key, data[key][1][i], n_riga)  # aggiungo la riga
     else:  # se è un singolo valore
         if not data[key][2]:  # controllo se è un dato di input
             for j in range(len(titoli)):
                 if titoli[j][0] in key:
                     if titoli[j][1] == False:
-                        aggiungi_titolo(titoli[j][0].replace(cs, ''), n_riga)
-                        n_riga += 1
+                        n_riga = aggiungi_titolo(titoli[j][0].replace(cs, ''), n_riga)
                         titoli[j][1] = True
                     new_key = key.replace(titoli[j][0], '')
-                    aggiungi_riga(new_key, data[key][1], n_riga)  # aggiungo la riga
-                    n_riga += 1  # aumento il contatore delle righe
-                    break
+                    n_riga = aggiungi_riga(new_key, data[key][1], n_riga)  # aggiungo la riga
+                    aggiunto = True
+            if aggiunto == False:
+                n_riga = aggiungi_riga(key, data[key][1], n_riga)  # aggiungo la riga
 
-submit_button = Button(input_frame, command=lambda: submit(text_fields), background='#b3deff', text='CREA FILE EXCEL', font='Helvetica 12 bold', width=20, height=1)
-submit_button.grid(row=n_riga + 1, column=0, sticky="s", padx=15, pady=20, columnspan=3)
+submit_button = Button(input_frame, command=lambda: crea_file_excel(entry_fields, input_list), background='#b3deff', text='CREATE EXCEL FILE', font='Helvetica 12 bold', width=20, height=1)
+submit_button.grid(row=n_riga, column=0, sticky="w", padx=15, pady=20, columnspan=1)
+msg = Label(input_frame, background='white', text='', font='Helvetica 12')
+msg.grid(row=n_riga, column=0, sticky="e", padx=0, pady=20, columnspan=2)
 
 window.mainloop()
-
-exit(0)
