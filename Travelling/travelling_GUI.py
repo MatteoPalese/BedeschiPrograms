@@ -703,7 +703,8 @@ def crea_file_excel(entry_fields_list, input_data_list):
     except (ValueError, IndexError):
         print('Fermo il flusso del pulsante.')
 
-# i due eventi relativi alla finestra associati al ridimensionamento e alla rotella del mouse
+# i due eventi relativi alla finestra associati al ridimensionamento della finestra e
+# al movimento della rotella del mouse 
 def on_configure(event):
     canvas.configure(scrollregion=canvas.bbox("all"))
 def on_mousewheel(event):
@@ -733,6 +734,7 @@ def submit(texts):
             msg.config(text='Some values are missing or not valid.')
             entry_fields[i].config(background='#ff8080')
     return
+
 
 # ELABORAZIONE ----------------------------------------------------------------------
 print('-- TRAVELLING EXCEL FILE CREATOR --')
@@ -801,8 +803,8 @@ for key in data.keys():  # cerca i dati di input controllando il terzo valore
                 n_riga = aggiungi_riga(key, data[key][1], n_riga)  # aggiungo la riga
 
 submit_button = Button(input_frame, command=lambda: crea_file_excel(entry_fields, input_list), background='#b3deff', text='CREATE EXCEL FILE', font='Helvetica 12 bold', width=20, height=1)
-submit_button.grid(row=n_riga, column=0, sticky="w", padx=15, pady=20, columnspan=1)
-msg = Label(input_frame, background='white', text='', font='Helvetica 12')
-msg.grid(row=n_riga, column=0, sticky="e", padx=0, pady=20, columnspan=2)
+submit_button.grid(row=n_riga, column=0, sticky="w", padx=15, pady=20, columnspan=3)
+msg = Label(input_frame, background='white', text='', font='Helvetica 12', wraplength=430)
+msg.grid(row=n_riga, column=0, sticky="e", padx=20, pady=20, columnspan=3)
 
 window.mainloop()
