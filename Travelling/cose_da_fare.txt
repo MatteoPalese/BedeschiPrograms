@@ -1,15 +1,2 @@
 1. Aggiungere lo spostamento automatico della pagina al campo di input sul quale si è
-2. Migliorare lo stile dell'applicazione
-3. Creare con pyinstaller e Anaconda il setup wizard dell'applicazione e inserirlo nel repo al 
-posto del file zip dopo dovuti test e accertamenti del funzionamento (https://youtu.be/p3tSLatmGvU)
-
-
-
-
-
-
-
-
-
-
-
+2. Creare il setup dell'eseguibile modificato e caricarlo nel repo al posto della zip
