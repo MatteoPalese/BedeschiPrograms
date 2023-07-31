@@ -1,5 +1,10 @@
 # BOOM SLEWING
-from openpyxl import Workbook, load_workbook
+import os
+from datetime import datetime
+from tkinter import *
+from tkinter import filedialog
+
+from openpyxl import load_workbook
 
 # le unità dalle righe 8 a 20
 u1 = ['t', 'm', 't x m²']
@@ -29,7 +34,7 @@ data = \
     'TOTAL CWTB': [[None, None, None], u1, [None, None, 'data["TOTAL CWTB"][0][0] * (data["TOTAL CWTB"][0][1]**2)'], ['E23', 'G23', 'I23']],
     'TOTAL CYL': [[None, None, None], u1, [None, None, 'data["TOTAL CYL"][0][0] * (data["TOTAL CYL"][0][1]**2)'], ['E26', 'G26', 'I26']],
     'TOTAL MAST': [[None, None, None], u1, [None, None, 'data["TOTAL MAST"][0][0] * (data["TOTAL MAST"][0][1]**2)'], ['E29', 'G29', 'I29']],
-    '- MATERIAL ON BOOM AND BUCKET WHEEL': [[None, None, None], u1, [None, None, 'data["- MATERIAL ON BOOM AND BUCKET WHEEL"][0][0] * (data["- MATERIAL ON BOOM AND BUCKET WHEEL"][0][1]**2)'], ['E32', 'G32', 'I32']],
+    'MATERIAL ON BOOM AND BUCKET WHEEL': [[None, None, None], u1, [None, None, 'data["MATERIAL ON BOOM AND BUCKET WHEEL"][0][0] * (data["MATERIAL ON BOOM AND BUCKET WHEEL"][0][1]**2)'], ['E32', 'G32', 'I32']],
 
     #chiedono solo 1 input e a volte danno output
     'BOOM LENGTH': [None, 'm', None, 'H41'],
@@ -58,7 +63,7 @@ data = \
     'teeth tickness b': [[None, None], ['pinion teeth stress', 'slew bearing teeth stress'], [None, None], ['P231', 'Q231']],
     'Y': [[None, None], ['pinion teeth stress', 'slew bearing teeth stress'], [None, None], ['P232', 'Q232']],
     # output
-    'TOT.WEIGHT OF SLEWING PART  =': [[None, None], ['t', 'tm2'], ['sum([data[keys[i]][0][0] for i in range(9)])', 'sum([data[keys[i]][0][2] for i in range(9)])'], ['E35', 'I35']],
+    'TOT.WEIGHT OF SLEWING PART  =': [[None, None], ['t', 'tm2'], ['sum([data[KEYS[i]][0][0] for i in range(9)])', 'sum([data[KEYS[i]][0][2] for i in range(9)])'], ['E35', 'I35']],
 
     #'POWER CALCULATION ( for 1 motor ) RIGA 84
     'MOMENT OF INERTIA AT MOTOR SHAFT': [None, 'Kgm2', '(data["TOT.WEIGHT OF SLEWING PART  ="][0][1] * 1000 * (data["MAX BOOM SLEWING SPEED"][0][0] ** 2) / (data["NOMINAL MOTOR SPEED"][0][0] ** 2)) + data["MOTORS NUMBER"][0] * (data["MOTOR INERTIA ( of 1 drive )"][0] + data["GEARS AND BRAKE INERTIA ( of 1 drive )"][0])', 'F91'],
@@ -106,24 +111,39 @@ data = \
     '-FRICTION AND RAT. WIND (STACKING)': [[None, None, None, None, None, None, None, None, None, None, None, None, None], u4, ['data["FRICTION AND RAT. WIND (STACKING)"][0][0]', 'data["Rated brake torque setting"][0]', 'data["-FRICTION AND RAT. WIND (STACKING)"][0][0] + data["-FRICTION AND RAT. WIND (STACKING)"][0][1]', 'data["total inertia on each drive"][0]', 'data["-FRICTION AND RAT. WIND (STACKING)"][0][2] / data["-FRICTION AND RAT. WIND (STACKING)"][0][3]', 'data["NOMINAL MOTOR SPEED"][0][1]', 'data["-FRICTION AND RAT. WIND (STACKING)"][0][5] / data["-FRICTION AND RAT. WIND (STACKING)"][0][4]', 'data["-FRICTION AND RAT. WIND (STACKING)"][0][2] * data["gear box ratio"][0] / 1000', 'data["-FRICTION AND RAT. WIND (STACKING)"][0][7] / (data["PINION DIAMETER"][0] / 1000 / 2)', 'data["-FRICTION AND RAT. WIND (STACKING)"][0][8] / 9.81', 'data["-FRICTION AND RAT. WIND (STACKING)"][0][8] * 1000 / data["MODULE"][0] / data["Y"][0][0] / data["teeth tickness b"][0][0]', 'data["-FRICTION AND RAT. WIND (STACKING)"][0][8] * 1000 / data["MODULE"][0] / data["Y"][0][1] / data["teeth tickness b"][0][1]', 'f"{data[\'yeld stress [N/mm2]\'][0][0] / data[\'-FRICTION AND RAT. WIND (STACKING)\'][0][10]:.1f} ; {data[\'yeld stress [N/mm2]\'][0][1] / data[\'-FRICTION AND RAT. WIND (STACKING)\'][0][11]:.1f}".replace(".", ",")'], ['E245', 'F245', 'G245', 'H245', 'I245', 'J245', 'K245', 'L245', 'N245', 'O245', 'P245', 'Q245', 'R245']]
 }
 
-keys = list(data.keys())
+KEYS = list(data.keys())
 formule_errate = []
 
-# lettura dati input da file
-def creaExcel(dati):
-    j = 0
+
+# inserimento dei dati su file Excel
+def inserisci_dati_excel(trav_sheet, data):
     for key in data.keys():
+        if type(data[key][3]) is list: # controllo se ha più di una cella
+            for i in range(len(data[key][3])): # per ogni posizione
+                trav_sheet[data[key][3][i]].value = data[key][0][i] # inserisco il valore
+        else: # se non è una lista
+            trav_sheet[data[key][3]].value = data[key][0]
+    trav_sheet['H38'].value = data['TOT.WEIGHT OF SLEWING PART  ='][0][0]
+    trav_sheet['F157'].value = data['bucket distance from and slewing axe'][0]
+    trav_sheet['J91'].value = data['MOTORS NUMBER'][0]
+    trav_sheet['F251'].value = "NOT SATISFIED IN ALL CONDITIONS" if (data['power of each motor'][0] < max([data['FRICTION AND NORMAL DIGGING'][0][13], data['FRICTION, RAT. WIND, NORMAL DIGGING'][0][13], data['FRICTION, RAT. WIND, ACC, NOR. DIGGING'][0][13], data['MAX TRAVELLING WIND (STATIC)'][0][13], data['FRICTION AND ABNORMAL DIGGING'][0][13], data['FRICTION AND RAT. WIND (STACKING)'][0][13]])) else "SATISFIED IN ALL CONDITIONS"
+
+
+# calcola i dati di output e prende i dati di input
+def assegna_valori(dati, data):
+    j = 0
+    for key in KEYS:
         if type(data[key][2]) is list:
             for i in range(len(data[key][2])):
                 if not data[key][2][i]:
-                    data[key][0][i] = dati[j] # legge la riga corrente e incrementa l'indice della riga corrente
+                    data[key][0][i] = dati[j]
                     j += 1
         elif not data[key][2]:
-            data[key][0] = dati[j] # legge la riga corrente e incrementa l'indice della riga corrente
+            data[key][0] = dati[j]
             j += 1
     # calcolo dei valori di output
     print('\n\nCalculating output values...\n')
-    for key in data.keys(): # cerca i dati di output
+    for key in KEYS: # cerca i dati di output
         if type(data[key][2]) is list: # controllo se ha più di un dato
             for i in range(len(data[key][2])): # cerco formule nella lista
                 if data[key][2][i]: # se trovo la formula
@@ -144,18 +164,18 @@ def creaExcel(dati):
         else:
             data[formula[1]][0] = eval(data[formula[1]][2]) # calcolo
 
+def crea_excel(dati):
     # inserimento dei dati su file Excel e salvataggio di un nuovo file
     trav_file = load_workbook('templateBoomSlewing.xlsx') # carico il file Excel completo
     trav_sheet = trav_file.active # carico il foglio singolo, l'unico che è presente, TRAVELLING
-    for key in data.keys():
-        if type(data[key][3]) is list: # controllo se ha più di una cella
-            for i in range(len(data[key][3])): # per ogni posizione
-                trav_sheet[data[key][3][i]].value = data[key][0][i] # inserisco il valore
-        else: # se non è una lista
-            trav_sheet[data[key][3]].value = data[key][0]
-    trav_sheet['H38'].value = data['TOT.WEIGHT OF SLEWING PART  ='][0][0]
-    trav_sheet['F157'].value = data['bucket distance from and slewing axe'][0]
-    trav_sheet['J91'].value = data['MOTORS NUMBER'][0]
-    trav_sheet['F251'].value = "NOT SATISFIED IN ALL CONDITIONS" if (data['power of each motor'][0] < max([data['FRICTION AND NORMAL DIGGING'][0][13], data['FRICTION, RAT. WIND, NORMAL DIGGING'][0][13], data['FRICTION, RAT. WIND, ACC, NOR. DIGGING'][0][13], data['MAX TRAVELLING WIND (STATIC)'][0][13], data['FRICTION AND ABNORMAL DIGGING'][0][13], data['FRICTION AND RAT. WIND (STACKING)'][0][13]])) else "SATISFIED IN ALL CONDITIONS"
-
-    trav_file.save('BoomSlewing_nuovo.xlsx') # salvo il nuovo file
+    assegna_valori(dati, data)
+    inserisci_dati_excel(trav_sheet, data)
+    data_corrente = datetime.now().strftime('%Y-%m-%d__%H-%M')
+    trav_file_name = 'BoomSlewing__' + data_corrente + '.xlsx'
+    root = Tk()  # creo la finestra principale di tkinter
+    root.withdraw()  # la nascondo
+    print('\nSelect the folder to save the Excel file.')
+    new_dir_path = filedialog.askdirectory()  # chiedo dove salvare il file
+    new_file_path = os.path.join(new_dir_path, trav_file_name)  # salvo il percorso del file
+    trav_file.save(new_file_path)  # salvataggio del file
+    print('\nThe new Travelling file was created in ' + new_dir_path)
