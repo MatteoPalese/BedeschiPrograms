@@ -1,2 +1,0 @@
-1. Aggiungere lo spostamento automatico della pagina al campo di input sul quale si è
-2. Creare il setup dell'eseguibile modificato e caricarlo nel repo al posto della zip
