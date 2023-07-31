@@ -5,4 +5,4 @@ Questo progetto include tutti i file che costituiscono le applicazioni di Travel
 
 
 ## Come scarico le applicazioni? 
-Se si vuole installare uno dei software, sarà sufficiente scaricare il file compresso corrispondente ed estrarre il contenuto dove si vuole. Dopo di che è necessario seguire le istruzioni nel file README appena estratto per accedere all'app e poterla utilizzare in modo efficiente.
+Se si vuole installare uno dei software, sarà sufficiente scaricare il setup corrispondente ed avviarlo.
