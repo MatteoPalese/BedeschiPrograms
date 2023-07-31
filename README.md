@@ -6,3 +6,6 @@ Questo progetto include tutti i file che costituiscono le applicazioni di Travel
 
 ## Come scarico le applicazioni? 
 Se si vuole installare uno dei software, sarà sufficiente scaricare il setup corrispondente ed avviarlo.
+
+## Istruzioni aggiuntive
+Per utilizzare i software al meglio, si consiglia la lettura del file di testo adeguato.
