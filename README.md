@@ -5,8 +5,4 @@ Questo progetto include tutti i file che costituiscono le applicazioni di *Bedes
 
 
 ## Come scarico le applicazioni? 
-Se si vuole installare uno dei software, sarà sufficiente scaricare il setup corrispondente ed avviarlo.
-
-
-## Istruzioni aggiuntive
-Per utilizzare i software al meglio, si consiglia la lettura del file di testo adeguato.
+Per installare uno dei software, è sufficiente aprire la cartella corrispondente, scaricare il setup ed avviarlo. Inoltre, per utilizzare i programmi al meglio, si consiglia la lettura del file di testo nella stessa cartella del setup.
