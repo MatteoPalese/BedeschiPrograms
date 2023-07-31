@@ -1,8 +1,6 @@
 # Bedeschi Programs
 ![Logo di Bedeschi](https://cargoconnexion.com/wp-content/uploads/2017/06/Bedeschi-logo-large.jpg)
-
-Questo progetto include tutti i file che costituiscono le applicazioni di Travelling e Boom Slewing, entrambe ospitate qui.
-
+Questo progetto include tutti i file che costituiscono le applicazioni di *Bedeschi Programs*.
 
 ## Come scarico le applicazioni? 
 Se si vuole installare uno dei software, sarà sufficiente scaricare il setup corrispondente ed avviarlo.
