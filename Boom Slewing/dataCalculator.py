@@ -117,6 +117,8 @@ formule_errate = []
 
 # inserimento dei dati su file Excel
 def inserisci_dati_excel(trav_sheet, data):
+    for key in ["FRICTION AND NORMAL DIGGING", 'FRICTION, RAT. WIND, NORMAL DIGGING', 'FRICTION, RAT. WIND, ACC, NOR. DIGGING', 'MAX TRAVELLING WIND (STATIC)', 'FRICTION AND ABNORMAL DIGGING', 'FRICTION AND RAT. WIND (STACKING)']:
+        data[key][0][5] = data[key][0][5] / 100
     for key in data.keys():
         if type(data[key][3]) is list: # controllo se ha più di una cella
             for i in range(len(data[key][3])): # per ogni posizione
@@ -126,6 +128,7 @@ def inserisci_dati_excel(trav_sheet, data):
     trav_sheet['H38'].value = data['TOT.WEIGHT OF SLEWING PART  ='][0][0]
     trav_sheet['F157'].value = data['bucket distance from and slewing axe'][0]
     trav_sheet['J91'].value = data['MOTORS NUMBER'][0]
+    print(data['FRICTION AND NORMAL DIGGING'][0][5])
     trav_sheet['F251'].value = "NOT SATISFIED IN ALL CONDITIONS" if (data['power of each motor'][0] < max([data['FRICTION AND NORMAL DIGGING'][0][13], data['FRICTION, RAT. WIND, NORMAL DIGGING'][0][13], data['FRICTION, RAT. WIND, ACC, NOR. DIGGING'][0][13], data['MAX TRAVELLING WIND (STATIC)'][0][13], data['FRICTION AND ABNORMAL DIGGING'][0][13], data['FRICTION AND RAT. WIND (STACKING)'][0][13]])) else "SATISFIED IN ALL CONDITIONS"
 
 
