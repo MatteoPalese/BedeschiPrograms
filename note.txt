@@ -2,11 +2,11 @@ NOTE SU 2° PROGETTO
 Il file Excel fornito contiene vari fogli, i quali principali sono:
 - Input data => contiene i dati di input
 - Bench analysis => raggruppa i dati dagli altri fogli
-- Bench 1, Bench 2 => fogli che vengono utilizzati in modo variabile contenenti i calcoli
+- Bench-n => fogli contenenti i calcoli
 
 Anche in questo file sono presenti colorazioni utili al progetto:
-- celle blu => input, solitamente presi da altri fogli 
+- celle blu => input, solitamente presi da altri fogli
 - celle gialle => dettagli
-- celle verdi / rosse => conferme / avvisi 
+- celle verdi / rosse => conferme / avvisi
 
-C'è una cella importante che contiene il numero di fogli utilizzati (bench 1, bench 2, ecc) chiamata "Number of selected benches"
+C'è una cella importante che contiene il numero di fogli utilizzati (Bench-1, Bench-2, ecc.) chiamata "Number of selected benches"
