@@ -1,7 +1,7 @@
 ## TRAVELLING EXCEL FILE CREATOR ##
 
 -- NOTE SULL'APP --
- * i valori decimali possono avere come separatore virgola o punto, entrambi utilizzabili contemporaneamente;
+ * i valori decimali devono avere come separatore il punto, altrimenti non saranno validi;
  * alla creazione di due file nello stesso minuto nella stessa cartella (ex: compilo e clicco due volte il testo di creazione 
    file scegliendo sempre la stessa cartella dove salvare), il secondo foglio excel sovvrascriverà il primo, eliminandolo.
 
