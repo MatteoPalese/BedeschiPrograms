@@ -562,6 +562,18 @@ data = \
 }
 
 # FUNZIONI ----------------------------------------------------------------------
+# per pyinstaller
+# https://stackoverflow.com/questions/31836104/pyinstaller-and-onefile-how-to-include-an-image-in-the-exe-file
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+
+    return os.path.join(base_path, relative_path)
+
 # legge un file txt interno, ormai inutile poiché utilizzata per test
 def leggi_dati_txt():
     current_line = 0
@@ -704,7 +716,7 @@ def crea_file_excel(entry_fields_list, input_data_list):
         print('Fermo il flusso del pulsante.')
 
 # i due eventi relativi alla finestra associati al ridimensionamento della finestra e
-# al movimento della rotella del mouse 
+# al movimento della rotella del mouse
 def on_configure(event):
     canvas.configure(scrollregion=canvas.bbox("all"))
 def on_mousewheel(event):
@@ -741,7 +753,7 @@ print('-- TRAVELLING EXCEL FILE CREATOR --')
 
 # caricamento del file Travelling.xlsx vuoto per riempimento futuro
 try:
-    trav_file = load_workbook('Travelling.xlsx') # carico il file Travelling.xlsx completo
+    trav_file = load_workbook(resource_path('Travelling.xlsx')) # carico il file Travelling.xlsx completo
     trav_sheet = trav_file.active # carico il foglio singolo, l'unico che è presente, TRAVELLING
 except FileNotFoundError:
     print('\nThe blank Travelling Excel file does not exist.')
