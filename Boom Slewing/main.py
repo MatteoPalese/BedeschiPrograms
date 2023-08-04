@@ -14,6 +14,10 @@ def on_mousewheel(event):
     canvas.yview_scroll(int(-1 * (event.delta / 120)), "units")
 
 
+def mostra_testo():
+    label_errore.configure(fg='red')
+
+
 # Aggiunge una riga nella finestra con il formato --> Descrizione [   ] unità_di_misura
 def aggiungi_riga(descrizione, unita_di_misura, n_riga):
     text_fields.append(Entry(input_frame, width=10, background='#e8f0ff'))
@@ -32,14 +36,19 @@ def aggiungi_riga_multipla(key, unita_di_misura, i):
 # Crea un file Excel con i dati inseriti dall'utente
 def submit(texts):
     numeri = []
-    for text in texts:
+    c = True
+    for i, text in enumerate(texts):
         try:
             numeri.append(float(text.get()))
+            texts[i].config(background='#e8f0ff')
         except ValueError:
-            print('ERRORE NEI DATI!')
-            return
-    crea_excel(numeri)
-    exit(1)
+            texts[i].config(background='#ff8080')
+            c = False
+    if c:
+        crea_excel(numeri)
+        exit(1)
+    else:
+        mostra_testo()
 
 
 # INTERFACCIA UTENTE -------------------------------------------------------------
@@ -82,7 +91,7 @@ for key in KEYS:
                 continue
             aggiungi_riga_multipla(key, data[key][1][j], i)
             i += 1
-    else:
+    elif not data[key][2]:
         aggiungi_riga_multipla(key, data[key][1], i)
         i += 1
 
@@ -101,9 +110,13 @@ for widget in input_frame.winfo_children():
         widget.configure(background='#f2f2f2')
     elif isinstance(widget, Entry):
         widget.configure(background='#e8f0ff', font='Helvetica 12', borderwidth=0, highlightthickness=1, highlightbackground='#d9d9d9', highlightcolor='#d9d9d9')
-
+label_errore = Label(input_frame, text="ERRORE NEGLI INPUT !", font='Helvetica 12 bold', fg='#f2f2f2')
+label_errore.grid(row=i+2, column=0, columnspan=2, sticky='WE')
 # Avvio della finestra
 window.mainloop()
 
 # Fine del programma
 exit(0)
+
+
+
