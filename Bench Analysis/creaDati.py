@@ -1,9 +1,9 @@
 # se l'unità di misura è adimensionale inserire -, altrimenti con il vuoto potrebbe dare un errore
 # per le formule inserire tra "" o '' il nome della variabile e data['nome'] verrà messo in automatico
-# per facilitare l'inserimento delle formule scrivere il nome della variabile circondato da ^nome^, e se c'è una posizione mettere &index (index sarà un numero)
+# per facilitare l'inserimento delle formule scrivere il nome della variabile circondato da ^nomeFoglio?nomeVariabile^, e se c'è una posizione mettere &index (index sarà un numero)
 
 ret = dict()
-nome, valore, unit, formula = '', 0, '', ''
+nome, valore, unit, formula, cella = '', None, '', '', ''
 print('AUTO INSERIMENTO DATI')
 # prendo i dati
 while True:
@@ -13,32 +13,34 @@ while True:
         break
     nome = input("Inserisci il nome della variabile: ")
     if input('Contiene più di un valore (y = si): ') == 'y':
-        valori, units, formule = [], [], []
+        valori, units, formule, celle = [], [], [], []
         for i in range(100):  # se ha più di cento valori mi dispiace
-            valori.append(input(f"Inserisci il valore n. {i + 1}: "))
+            valori.append(None)
             # units.append(input(f"Inserisci l'unità n. {i}: "))
             formule.append(input(f"Inserisci la formula n. {i + 1}: "))
+            celle.append(input(f"Inserisci la cella n. {i + 1}: "))
             if input("I valori sono finiti (y = si): ") == 'y':
                 break
             try:  # mi assicuro che non ci siano due variabili con lo stesso nome
                 tmp = ret[nome]
             except KeyError:
-                ret[nome] = [valori, units, formule]
+                ret[nome] = [valori, units, formule, celle]
                 continue
             if input(
                     'Hai scritto due variabili con lo stesso nome, vuoi cambiarlo (y = si): '
             ) == 'y':
                 nome = input(f'Inserisci il nuovo nome (nomePrecedente = {nome}): ')
-            ret[nome] = [valori, units, formule]
+            ret[nome] = [valori, units, formule, celle]
     else:
-        valore = input('Inserisci il valore (niente/null = input): ')
+        valore = None
         # unit = input("Inserisci l'unità: ")
         formula = input("Inserisci la formula (null = input): ")
-        ret[nome] = [valore, unit, formula]
+        cella = input("Inserisci la cella: ")
+        ret[nome] = [valore, unit, formula, cella]
 
 # modifico la stringa null con il valore null effettivo e per i valori farò
 for key in ret.keys():
-    if isinstance(ret[key][0], str):
+    if isinstance(ret[key][3], str):
         for i in range(0, 3, 2):
             if ret[key][i] == "null" or ret[key][i] == "":
                 ret[key][i] = None
@@ -52,8 +54,7 @@ for key in ret.keys():
 for key in ret.keys():
     if isinstance(ret[key][2], str):
         while '^' in ret[key][2]:
-            ret[key][2] = ret[key][2].replace('^', 'data["', 1)
-            ret[key][2] = ret[key][2].replace('^', '"][0]', 1)
+            ret[key][2] = ret[key][2].replace('^', 'data["', 1).replace('^', '"][0]', 1).replace('?', '"]["')
             if '&' in ret[key][2]:
                 index = ret[key][2].index('&')
                 ret[key][2] = ret[key][2][:index] + '[' + ret[key][2][index + 1:]
@@ -68,8 +69,7 @@ for key in ret.keys():
     else:
         for j in range(len(ret[key][2])):
             while '^' in ret[key][2][j]:
-                ret[key][2][j] = ret[key][2][j].replace('^', 'data["', 1)
-                ret[key][2][j] = ret[key][2][j].replace('^', '"][0]', 1)
+                ret[key][2][j] = ret[key][2][j].replace('^', 'data["', 1).replace('^', '"][0]', 1).replace('?', '"]["')
                 if '&' in ret[key][2][j]:
                     index = ret[key][2][j].index('&')
                     ret[key][2][j] = ret[key][2][j][:index] + '[' + ret[key][2][j][index + 1:]
