@@ -262,6 +262,7 @@ data = \
 		"L190": [None, 'data["Bench Analysis"]["R14"][0] if data["Bench Analysis"]["B14"][0] != "n.a." else ""'],
 		"O190": [None, 'data["Bench Analysis"]["F14"][0] / data["Input Data"]["C8"][0] * 2 if data["Bench Analysis"]["F14"][0] != "n.a." else ""'],
 		"R190": [None, 'data["Bench Analysis"]["Z14"][0] if data["Bench Analysis"]["Z14"][0] != "n.a." else ""'],
+    
 		"B196": [None, 'data["PRINT"]["B181"][0]'],
 		"C196": [None, 'data["Bench Analysis"]["Y5"][0] * data["Input Data"]["C3"][0] if data["Bench Analysis"]["B5"][0] != "n.a." else ""'],
 		"F196": [None, 'data["Bench Analysis"]["AA5"][0] * data["Input Data"]["C3"][0] if data["Bench Analysis"]["B5"][0] != "n.a." else ""'],
