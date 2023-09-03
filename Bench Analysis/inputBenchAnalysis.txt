@@ -1,0 +1,1051 @@
+C5
+^Input Data?C26^ / ^Input Data?C41^ * (^Input Data?C41^ - ^Bench Analysis?B5^) if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+C6
+^Input Data?C26^ / ^Input Data?C41^ * (^Input Data?C41^ - ^Bench Analysis?B6^) if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+C7
+^Input Data?C26^ / ^Input Data?C41^ * (^Input Data?C41^ - ^Bench Analysis?B7^) if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+C8
+^Input Data?C26^ / ^Input Data?C41^ * (^Input Data?C41^ - ^Bench Analysis?B8^) if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+C9
+^Input Data?C26^ / ^Input Data?C41^ * (^Input Data?C41^ - ^Bench Analysis?B9^) if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+C10
+^Input Data?C26^ / ^Input Data?C41^ * (^Input Data?C41^ - ^Bench Analysis?B10^) if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+C11
+^Input Data?C26^ / ^Input Data?C41^ * (^Input Data?C41^ - ^Bench Analysis?B11^) if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+C12
+^Input Data?C26^ / ^Input Data?C41^ * (^Input Data?C41^ - ^Bench Analysis?B12^) if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+C13
+^Input Data?C26^ / ^Input Data?C41^ * (^Input Data?C41^ - ^Bench Analysis?B13^) if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+C14
+^Input Data?C26^ / ^Input Data?C41^ * (^Input Data?C41^ - ^Bench Analysis?B14^) if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+D5
+^Bench Analysis?C5^
+
+D6
+^Bench Analysis?C6^
+
+D7
+^Bench Analysis?C7^
+
+D8
+^Bench Analysis?C8^
+
+D9
+^Bench Analysis?C9^
+
+D10
+^Bench Analysis?C10^
+
+D11
+^Bench Analysis?C11^
+
+D12
+^Bench Analysis?C12^
+
+D13
+^Bench Analysis?C13^
+
+D14
+^Bench Analysis?C14^
+
+E5
+^Input Data?C26^ / ^Input Data?C41^ if (^Bench Analysis?B5^ != "n.a.") else "n.a."
+
+E6
+^Input Data?C26^ / ^Input Data?C41^ if (^Bench Analysis?B6^ != "n.a.") else "n.a."
+
+E7
+^Input Data?C26^ / ^Input Data?C41^ if (^Bench Analysis?B7^ != "n.a.") else "n.a."
+
+E8
+^Input Data?C26^ / ^Input Data?C41^ if (^Bench Analysis?B8^ != "n.a.") else "n.a."
+
+E9
+^Input Data?C26^ / ^Input Data?C41^ if (^Bench Analysis?B9^ != "n.a.") else "n.a."
+
+E10
+^Input Data?C26^ / ^Input Data?C41^ if (^Bench Analysis?B10^ != "n.a.") else "n.a."
+
+E11
+^Input Data?C26^ / ^Input Data?C41^ if (^Bench Analysis?B11^ != "n.a.") else "n.a."
+
+E12
+^Input Data?C26^ / ^Input Data?C41^ if (^Bench Analysis?B12^ != "n.a.") else "n.a."
+
+E13
+^Input Data?C26^ / ^Input Data?C41^ if (^Bench Analysis?B13^ != "n.a.") else "n.a."
+
+E14
+^Input Data?C26^ / ^Input Data?C41^ if (^Bench Analysis?B14^ != "n.a.") else "n.a."
+
+F5
+^Bench Analysis?E5^
+
+F6
+^Bench Analysis?E6^
+
+F7
+^Bench Analysis?E7^
+
+F8
+^Bench Analysis?E8^
+
+F9
+^Bench Analysis?E9^
+
+F10
+^Bench Analysis?E10^
+
+F11
+^Bench Analysis?E11^
+
+F12
+^Bench Analysis?E12^
+
+F13
+^Bench Analysis?E13^
+
+F14
+^Bench Analysis?E14^
+
+F15
+sum(data['Bench Analysis'][key][0] for key in ['F5', 'F6', 'F7', 'F8', 'F9', 'F10', 'F11', 'F12', 'F13', 'F14'])
+
+F16
+^Input Data?C26^
+
+F17
+^Bench Analysis?F15^ - ^Bench Analysis?F16^
+
+G5
+^Input Data?C27^ - 2 * ^Bench Analysis?C5^ / math.tan(^Input Data?C47^) if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+G6
+^Input Data?C27^ - 2 * ^Bench Analysis?C6^ / math.tan(^Input Data?C47^) if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+G7
+^Input Data?C27^ - 2 * ^Bench Analysis?C7^ / math.tan(^Input Data?C47^) if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+G8
+^Input Data?C27^ - 2 * ^Bench Analysis?C8^ / math.tan(^Input Data?C47^) if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+G9
+^Input Data?C27^ - 2 * ^Bench Analysis?C9^ / math.tan(^Input Data?C47^) if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+G10
+^Input Data?C27^ - 2 * ^Bench Analysis?C10^ / math.tan(^Input Data?C47^) if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+G11
+^Input Data?C27^ - 2 * ^Bench Analysis?C11^ / math.tan(^Input Data?C47^) if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+G12
+^Input Data?C27^ - 2 * ^Bench Analysis?C12^ / math.tan(^Input Data?C47^) if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+G13
+^Input Data?C27^ - 2 * ^Bench Analysis?C13^ / math.tan(^Input Data?C47^) if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+G14
+^Input Data?C27^ - 2 * ^Bench Analysis?C14^ / math.tan(^Input Data?C47^) if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+G15
+"Check benches height since total is different from total stockpile height" if ^Bench Analysis?F15^ != ^Input Data?C26^ else "ok"
+
+H5
+math.asin((^Bench Analysis?C5^ - 0.98 * ^Input Data?C23^ + ^Input Data?C28^ / 2) / ^Input Data?C20^) * 180 / math.pi if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+H6
+math.asin((^Bench Analysis?C6^ - 0.98 * ^Input Data?C23^ + ^Input Data?C28^ / 2) / ^Input Data?C20^) * 180 / math.pi if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+H7
+math.asin((^Bench Analysis?C57 - 0.98 * ^Input Data?C23^ + ^Input Data?C28^ / 2) / ^Input Data?C20^) * 180 / math.pi if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+H8
+math.asin((^Bench Analysis?C8^ - 0.98 * ^Input Data?C23^ + ^Input Data?C28^ / 2) / ^Input Data?C20^) * 180 / math.pi if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+H9
+math.asin((^Bench Analysis?C8^ - 0.98 * ^Input Data?C23^ + ^Input Data?C28^ / 2) / ^Input Data?C20^) * 180 / math.pi if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+H10
+math.asin((^Bench Analysis?C9^ - 0.98 * ^Input Data?C23^ + ^Input Data?C28^ / 2) / ^Input Data?C20^) * 180 / math.pi if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+H11
+math.asin((^Bench Analysis?C10^ - 0.98 * ^Input Data?C23^ + ^Input Data?C28^ / 2) / ^Input Data?C20^) * 180 / math.pi if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+H12
+math.asin((^Bench Analysis?C11^ - 0.98 * ^Input Data?C23^ + ^Input Data?C28^ / 2) / ^Input Data?C20^) * 180 / math.pi if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+H13
+math.asin((^Bench Analysis?C12^ - 0.98 * ^Input Data?C23^ + ^Input Data?C28^ / 2) / ^Input Data?C20^) * 180 / math.pi if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+H14
+math.asin((^Bench Analysis?C13^ - 0.98 * ^Input Data?C23^ + ^Input Data?C28^ / 2) / ^Input Data?C20^) * 180 / math.pi if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+ -------------------------------------------------- !!! ATTENZIONE !!! ----------------------------------------------------------------------------------------------------
+La roba qua sopra è apposto.
+Da qui in poi le formule sono semplicemente copiate e non sistemate in base alle celle che vanno a prendere sulla stessa riga
+(esempio: in I5 prendo da Bench Analysis H5, mentre in I6 prenderei H6, ma non è sistemato!).
+Questo implica che scriverai uno script che lo fa per te dopo che avrai constatato che i valori che cambiano sono solo quelli presi da Bench Analysis.
+E se non fosse così? Ne varrebbe la pena di automizzare tutto? Probabile, è una palla cambiare a mano i numeri.
+Sei un programmatore, dopotutto. Risolvi anche questo problema.
+---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+I5
+^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) + ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) + ^Input Data?C8^ / 2 * math.sin(^Input Data?C47^) if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+I6
+^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) + ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) + ^Input Data?C8^ / 2 * math.sin(^Input Data?C47^) if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+I7
+^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) + ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) + ^Input Data?C8^ / 2 * math.sin(^Input Data?C47^) if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+I8
+^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) + ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) + ^Input Data?C8^ / 2 * math.sin(^Input Data?C47^) if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+I9
+^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) + ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) + ^Input Data?C8^ / 2 * math.sin(^Input Data?C47^) if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+I10
+^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) + ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) + ^Input Data?C8^ / 2 * math.sin(^Input Data?C47^) if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+I11
+^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) + ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) + ^Input Data?C8^ / 2 * math.sin(^Input Data?C47^) if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+I12
+^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) + ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) + ^Input Data?C8^ / 2 * math.sin(^Input Data?C47^) if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+I13
+^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) + ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) + ^Input Data?C8^ / 2 * math.sin(^Input Data?C47^) if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+I14
+^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) + ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) + ^Input Data?C8^ / 2 * math.sin(^Input Data?C47^) if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+J5
+(^Bench Analysis?G5^ if (^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) - ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) * math.sin(^Input Data?C33^)  > ^Bench Analysis?G5^ + ^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?C5^ / math.tan(^Input Data?C47^)) else (^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) - ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) * math.sin(^Input Data?C33^) - (^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?C5^ / math.tan(^Input Data?C47^)))) if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+J6
+(^Bench Analysis?G5^ if (^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) - ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) * math.sin(^Input Data?C33^)  > ^Bench Analysis?G5^ + ^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?C5^ / math.tan(^Input Data?C47^)) else (^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) - ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) * math.sin(^Input Data?C33^) - (^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?C5^ / math.tan(^Input Data?C47^)))) if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+J7
+(^Bench Analysis?G5^ if (^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) - ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) * math.sin(^Input Data?C33^)  > ^Bench Analysis?G5^ + ^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?C5^ / math.tan(^Input Data?C47^)) else (^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) - ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) * math.sin(^Input Data?C33^) - (^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?C5^ / math.tan(^Input Data?C47^)))) if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+J8
+(^Bench Analysis?G5^ if (^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) - ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) * math.sin(^Input Data?C33^)  > ^Bench Analysis?G5^ + ^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?C5^ / math.tan(^Input Data?C47^)) else (^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) - ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) * math.sin(^Input Data?C33^) - (^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?C5^ / math.tan(^Input Data?C47^)))) if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+J9
+(^Bench Analysis?G5^ if (^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) - ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) * math.sin(^Input Data?C33^)  > ^Bench Analysis?G5^ + ^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?C5^ / math.tan(^Input Data?C47^)) else (^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) - ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) * math.sin(^Input Data?C33^) - (^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?C5^ / math.tan(^Input Data?C47^)))) if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+J10
+(^Bench Analysis?G5^ if (^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) - ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) * math.sin(^Input Data?C33^)  > ^Bench Analysis?G5^ + ^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?C5^ / math.tan(^Input Data?C47^)) else (^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) - ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) * math.sin(^Input Data?C33^) - (^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?C5^ / math.tan(^Input Data?C47^)))) if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+J11
+(^Bench Analysis?G5^ if (^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) - ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) * math.sin(^Input Data?C33^)  > ^Bench Analysis?G5^ + ^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?C5^ / math.tan(^Input Data?C47^)) else (^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) - ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) * math.sin(^Input Data?C33^) - (^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?C5^ / math.tan(^Input Data?C47^)))) if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+J12
+(^Bench Analysis?G5^ if (^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) - ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) * math.sin(^Input Data?C33^)  > ^Bench Analysis?G5^ + ^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?C5^ / math.tan(^Input Data?C47^)) else (^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) - ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) * math.sin(^Input Data?C33^) - (^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?C5^ / math.tan(^Input Data?C47^)))) if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+J13
+(^Bench Analysis?G5^ if (^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) - ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) * math.sin(^Input Data?C33^)  > ^Bench Analysis?G5^ + ^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?C5^ / math.tan(^Input Data?C47^)) else (^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) - ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) * math.sin(^Input Data?C33^) - (^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?C5^ / math.tan(^Input Data?C47^)))) if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+J14
+(^Bench Analysis?G5^ if (^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) - ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) * math.sin(^Input Data?C33^)  > ^Bench Analysis?G5^ + ^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?C5^ / math.tan(^Input Data?C47^)) else (^Input Data?C22^ + ^Input Data?C20^ * math.cos(^Bench Analysis?H5^*math.pi/180) - ^Input Data?C23^ * math.sin(^Bench Analysis?H5^*math.pi/180) * math.sin(^Input Data?C33^) - (^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?C5^ / math.tan(^Input Data?C47^)))) if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+K5
+(math.asin(^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / ^Bench Analysis?I5^) if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+K6
+(math.asin(^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / ^Bench Analysis?I5^) if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+K7
+(math.asin(^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / ^Bench Analysis?I5^) if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+K8
+(math.asin(^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / ^Bench Analysis?I5^) if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+K9
+(math.asin(^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / ^Bench Analysis?I5^) if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+K10
+(math.asin(^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / ^Bench Analysis?I5^) if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+K11
+(math.asin(^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / ^Bench Analysis?I5^) if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+K12
+(math.asin(^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / ^Bench Analysis?I5^) if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+K13
+(math.asin(^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / ^Bench Analysis?I5^) if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+K14
+(math.asin(^Input Data?C24^ - ^Input Data?C27^ / 2 + ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / ^Bench Analysis?I5^) if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+L5
+^Bench Analysis?K5^ * 180 / math.pi if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+L6
+^Bench Analysis?K5^ * 180 / math.pi if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+L7
+^Bench Analysis?K5^ * 180 / math.pi if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+L8
+^Bench Analysis?K5^ * 180 / math.pi if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+L9
+^Bench Analysis?K5^ * 180 / math.pi if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+L10
+^Bench Analysis?K5^ * 180 / math.pi if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+L11
+^Bench Analysis?K5^ * 180 / math.pi if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+L12
+^Bench Analysis?K5^ * 180 / math.pi if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+L13
+^Bench Analysis?K5^ * 180 / math.pi if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+L14
+^Bench Analysis?K5^ * 180 / math.pi if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+M5
+^Bench Analysis?L5^ if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+M6
+^Bench Analysis?L5^ if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+M7
+^Bench Analysis?L5^ if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+M8
+^Bench Analysis?L5^ if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+M9
+^Bench Analysis?L5^ if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+M10
+^Bench Analysis?L5^ if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+M11
+^Bench Analysis?L5^ if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+M12
+^Bench Analysis?L5^ if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+M13
+^Bench Analysis?L5^ if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+M14
+^Bench Analysis?L5^ if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+N5
+(math.asin((^Input Data?C24^ + ^Input Data?C27^ / 2 - ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / ^Bench Analysis?I5^ - 0 * ^Input Data?C8^ / 2 * math.sin(^Input Data?C47^)) if (^Input Data?C24^ + ^Input Data?C27^ / 2 - ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / (^Bench Analysis?I5^-0*^Input Data?C8^ / 2 * math.sin(^Input Data?C47^)) >= 1 else "n.a.") if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+N6
+(math.asin((^Input Data?C24^ + ^Input Data?C27^ / 2 - ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / ^Bench Analysis?I5^ - 0 * ^Input Data?C8^ / 2 * math.sin(^Input Data?C47^)) if (^Input Data?C24^ + ^Input Data?C27^ / 2 - ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / (^Bench Analysis?I5^-0*^Input Data?C8^ / 2 * math.sin(^Input Data?C47^)) >= 1 else "n.a.") if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+N7
+(math.asin((^Input Data?C24^ + ^Input Data?C27^ / 2 - ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / ^Bench Analysis?I5^ - 0 * ^Input Data?C8^ / 2 * math.sin(^Input Data?C47^)) if (^Input Data?C24^ + ^Input Data?C27^ / 2 - ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / (^Bench Analysis?I5^-0*^Input Data?C8^ / 2 * math.sin(^Input Data?C47^)) >= 1 else "n.a.") if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+N8
+(math.asin((^Input Data?C24^ + ^Input Data?C27^ / 2 - ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / ^Bench Analysis?I5^ - 0 * ^Input Data?C8^ / 2 * math.sin(^Input Data?C47^)) if (^Input Data?C24^ + ^Input Data?C27^ / 2 - ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / (^Bench Analysis?I5^-0*^Input Data?C8^ / 2 * math.sin(^Input Data?C47^)) >= 1 else "n.a.") if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+N9
+(math.asin((^Input Data?C24^ + ^Input Data?C27^ / 2 - ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / ^Bench Analysis?I5^ - 0 * ^Input Data?C8^ / 2 * math.sin(^Input Data?C47^)) if (^Input Data?C24^ + ^Input Data?C27^ / 2 - ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / (^Bench Analysis?I5^-0*^Input Data?C8^ / 2 * math.sin(^Input Data?C47^)) >= 1 else "n.a.") if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+N10
+(math.asin((^Input Data?C24^ + ^Input Data?C27^ / 2 - ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / ^Bench Analysis?I5^ - 0 * ^Input Data?C8^ / 2 * math.sin(^Input Data?C47^)) if (^Input Data?C24^ + ^Input Data?C27^ / 2 - ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / (^Bench Analysis?I5^-0*^Input Data?C8^ / 2 * math.sin(^Input Data?C47^)) >= 1 else "n.a.") if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+N11
+(math.asin((^Input Data?C24^ + ^Input Data?C27^ / 2 - ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / ^Bench Analysis?I5^ - 0 * ^Input Data?C8^ / 2 * math.sin(^Input Data?C47^)) if (^Input Data?C24^ + ^Input Data?C27^ / 2 - ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / (^Bench Analysis?I5^-0*^Input Data?C8^ / 2 * math.sin(^Input Data?C47^)) >= 1 else "n.a.") if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+N12
+(math.asin((^Input Data?C24^ + ^Input Data?C27^ / 2 - ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / ^Bench Analysis?I5^ - 0 * ^Input Data?C8^ / 2 * math.sin(^Input Data?C47^)) if (^Input Data?C24^ + ^Input Data?C27^ / 2 - ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / (^Bench Analysis?I5^-0*^Input Data?C8^ / 2 * math.sin(^Input Data?C47^)) >= 1 else "n.a.") if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+N13
+(math.asin((^Input Data?C24^ + ^Input Data?C27^ / 2 - ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / ^Bench Analysis?I5^ - 0 * ^Input Data?C8^ / 2 * math.sin(^Input Data?C47^)) if (^Input Data?C24^ + ^Input Data?C27^ / 2 - ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / (^Bench Analysis?I5^-0*^Input Data?C8^ / 2 * math.sin(^Input Data?C47^)) >= 1 else "n.a.") if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+N14
+(math.asin((^Input Data?C24^ + ^Input Data?C27^ / 2 - ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / ^Bench Analysis?I5^ - 0 * ^Input Data?C8^ / 2 * math.sin(^Input Data?C47^)) if (^Input Data?C24^ + ^Input Data?C27^ / 2 - ^Bench Analysis?D5^ / math.tan(^Input Data?C47^)) / (^Bench Analysis?I5^-0*^Input Data?C8^ / 2 * math.sin(^Input Data?C47^)) >= 1 else "n.a.") if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+O5
+^Bench Analysis?N5^ * 180 / math.pi if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+O6
+^Bench Analysis?N5^ * 180 / math.pi if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+O7
+^Bench Analysis?N5^ * 180 / math.pi if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+O8
+^Bench Analysis?N5^ * 180 / math.pi if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+O9
+^Bench Analysis?N5^ * 180 / math.pi if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+O10
+^Bench Analysis?N5^ * 180 / math.pi if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+O11
+^Bench Analysis?N5^ * 180 / math.pi if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+O12
+^Bench Analysis?N5^ * 180 / math.pi if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+O13
+^Bench Analysis?N5^ * 180 / math.pi if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+O14
+^Bench Analysis?N5^ * 180 / math.pi if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+P5
+^Bench Analysis?O5^ if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+P6
+^Bench Analysis?O5^ if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+P7
+^Bench Analysis?O5^ if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+P8
+^Bench Analysis?O5^ if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+P9
+^Bench Analysis?O5^ if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+P10
+^Bench Analysis?O5^ if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+P11
+^Bench Analysis?O5^ if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+P12
+^Bench Analysis?O5^ if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+P13
+^Bench Analysis?O5^ if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+P14
+^Bench Analysis?O5^ if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+Q5
+^Input Data?C43^ if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+Q6
+^Input Data?C43^ if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+Q7
+^Input Data?C43^ if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+Q8
+^Input Data?C43^ if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+Q9
+^Input Data?C43^ if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+Q10
+^Input Data?C43^ if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+Q11
+^Input Data?C43^ if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+Q12
+^Input Data?C43^ if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+Q13
+^Input Data?C43^ if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+Q14
+^Input Data?C43^ if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+R5
+INPUT
+
+R6
+INPUT
+
+R7
+INPUT
+
+R8
+INPUT
+
+R9
+INPUT
+
+R10
+INPUT
+
+R11
+INPUT
+
+R12
+INPUT
+
+R13
+INPUT
+
+R14
+INPUT
+
+S5
+(^Input Data?C11^ * ^Input Data?C65^ * ^Input Data?C17^ / ^Bench Analysis?R5^ / ^Bench Analysis?F5^ / ^Bench Analysis?I5^ if (^Input Data?C11^ * ^Input Data?C65^ * ^Input Data?C17^ / ^Bench Analysis?R5^ / ^Bench Analysis?F5^ / ^Bench Analysis?I5^ < ^Input Data?72^) else 0.9 * ^Input Data?C72^) if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+S6
+(^Input Data?C11^ * ^Input Data?C65^ * ^Input Data?C17^ / ^Bench Analysis?R5^ / ^Bench Analysis?F5^ / ^Bench Analysis?I5^ if (^Input Data?C11^ * ^Input Data?C65^ * ^Input Data?C17^ / ^Bench Analysis?R5^ / ^Bench Analysis?F5^ / ^Bench Analysis?I5^ < ^Input Data?72^) else 0.9 * ^Input Data?C72^) if ^Bench Analysis?B5^ != "n.a." else "n.a." if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+S7
+(^Input Data?C11^ * ^Input Data?C65^ * ^Input Data?C17^ / ^Bench Analysis?R5^ / ^Bench Analysis?F5^ / ^Bench Analysis?I5^ if (^Input Data?C11^ * ^Input Data?C65^ * ^Input Data?C17^ / ^Bench Analysis?R5^ / ^Bench Analysis?F5^ / ^Bench Analysis?I5^ < ^Input Data?72^) else 0.9 * ^Input Data?C72^) if ^Bench Analysis?B5^ != "n.a." else "n.a." if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+S8
+(^Input Data?C11^ * ^Input Data?C65^ * ^Input Data?C17^ / ^Bench Analysis?R5^ / ^Bench Analysis?F5^ / ^Bench Analysis?I5^ if (^Input Data?C11^ * ^Input Data?C65^ * ^Input Data?C17^ / ^Bench Analysis?R5^ / ^Bench Analysis?F5^ / ^Bench Analysis?I5^ < ^Input Data?72^) else 0.9 * ^Input Data?C72^) if ^Bench Analysis?B5^ != "n.a." else "n.a." if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+S9
+(^Input Data?C11^ * ^Input Data?C65^ * ^Input Data?C17^ / ^Bench Analysis?R5^ / ^Bench Analysis?F5^ / ^Bench Analysis?I5^ if (^Input Data?C11^ * ^Input Data?C65^ * ^Input Data?C17^ / ^Bench Analysis?R5^ / ^Bench Analysis?F5^ / ^Bench Analysis?I5^ < ^Input Data?72^) else 0.9 * ^Input Data?C72^) if ^Bench Analysis?B5^ != "n.a." else "n.a." if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+S10
+(^Input Data?C11^ * ^Input Data?C65^ * ^Input Data?C17^ / ^Bench Analysis?R5^ / ^Bench Analysis?F5^ / ^Bench Analysis?I5^ if (^Input Data?C11^ * ^Input Data?C65^ * ^Input Data?C17^ / ^Bench Analysis?R5^ / ^Bench Analysis?F5^ / ^Bench Analysis?I5^ < ^Input Data?72^) else 0.9 * ^Input Data?C72^) if ^Bench Analysis?B5^ != "n.a." else "n.a." if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+S11
+(^Input Data?C11^ * ^Input Data?C65^ * ^Input Data?C17^ / ^Bench Analysis?R5^ / ^Bench Analysis?F5^ / ^Bench Analysis?I5^ if (^Input Data?C11^ * ^Input Data?C65^ * ^Input Data?C17^ / ^Bench Analysis?R5^ / ^Bench Analysis?F5^ / ^Bench Analysis?I5^ < ^Input Data?72^) else 0.9 * ^Input Data?C72^) if ^Bench Analysis?B5^ != "n.a." else "n.a." if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+S12
+(^Input Data?C11^ * ^Input Data?C65^ * ^Input Data?C17^ / ^Bench Analysis?R5^ / ^Bench Analysis?F5^ / ^Bench Analysis?I5^ if (^Input Data?C11^ * ^Input Data?C65^ * ^Input Data?C17^ / ^Bench Analysis?R5^ / ^Bench Analysis?F5^ / ^Bench Analysis?I5^ < ^Input Data?72^) else 0.9 * ^Input Data?C72^) if ^Bench Analysis?B5^ != "n.a." else "n.a." if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+S13
+(^Input Data?C11^ * ^Input Data?C65^ * ^Input Data?C17^ / ^Bench Analysis?R5^ / ^Bench Analysis?F5^ / ^Bench Analysis?I5^ if (^Input Data?C11^ * ^Input Data?C65^ * ^Input Data?C17^ / ^Bench Analysis?R5^ / ^Bench Analysis?F5^ / ^Bench Analysis?I5^ < ^Input Data?72^) else 0.9 * ^Input Data?C72^) if ^Bench Analysis?B5^ != "n.a." else "n.a." if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+S14
+(^Input Data?C11^ * ^Input Data?C65^ * ^Input Data?C17^ / ^Bench Analysis?R5^ / ^Bench Analysis?F5^ / ^Bench Analysis?I5^ if (^Input Data?C11^ * ^Input Data?C65^ * ^Input Data?C17^ / ^Bench Analysis?R5^ / ^Bench Analysis?F5^ / ^Bench Analysis?I5^ < ^Input Data?72^) else 0.9 * ^Input Data?C72^) if ^Bench Analysis?B5^ != "n.a." else "n.a." if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+S16
+^Input Data?C74^
+
+T5
+^Bench Analysis?S5^ * 60 / 2 / math.pi if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+T6
+^Bench Analysis?S5^ * 60 / 2 / math.pi if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+T7
+^Bench Analysis?S5^ * 60 / 2 / math.pi if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+T8
+^Bench Analysis?S5^ * 60 / 2 / math.pi if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+T9
+^Bench Analysis?S5^ * 60 / 2 / math.pi if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+T10
+^Bench Analysis?S5^ * 60 / 2 / math.pi if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+T11
+^Bench Analysis?S5^ * 60 / 2 / math.pi if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+T12
+^Bench Analysis?S5^ * 60 / 2 / math.pi if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+T13
+^Bench Analysis?S5^ * 60 / 2 / math.pi if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+T14
+^Bench Analysis?S5^ * 60 / 2 / math.pi if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+U5
+^Bench Analysis?T5^ if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+U6
+^Bench Analysis?T5^ if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+U7
+^Bench Analysis?T5^ if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+U8
+^Bench Analysis?T5^ if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+U9
+^Bench Analysis?T5^ if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+U10
+^Bench Analysis?T5^ if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+U11
+^Bench Analysis?T5^ if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+U12
+^Bench Analysis?T5^ if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+U13
+^Bench Analysis?T5^ if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+U14
+^Bench Analysis?T5^ if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+V5
+INPUT
+
+V6
+INPUT
+
+V7
+INPUT
+
+V8
+INPUT
+
+V9
+INPUT
+
+V10
+INPUT
+
+V11
+INPUT
+
+V12
+INPUT
+
+V13
+INPUT
+
+V14
+INPUT
+
+W5
+^Input Data?C27^ - 2 * (^Bench Analysis?D5^+^Bench Analysis?F5^) / math.tan(^Input Data?C47^) if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+W6
+^Input Data?C27^ - 2 * (^Bench Analysis?D5^+^Bench Analysis?F5^) / math.tan(^Input Data?C47^) if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+W7
+^Input Data?C27^ - 2 * (^Bench Analysis?D5^+^Bench Analysis?F5^) / math.tan(^Input Data?C47^) if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+W8
+^Input Data?C27^ - 2 * (^Bench Analysis?D5^+^Bench Analysis?F5^) / math.tan(^Input Data?C47^) if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+W9
+^Input Data?C27^ - 2 * (^Bench Analysis?D5^+^Bench Analysis?F5^) / math.tan(^Input Data?C47^) if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+W10
+^Input Data?C27^ - 2 * (^Bench Analysis?D5^+^Bench Analysis?F5^) / math.tan(^Input Data?C47^) if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+W11
+^Input Data?C27^ - 2 * (^Bench Analysis?D5^+^Bench Analysis?F5^) / math.tan(^Input Data?C47^) if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+W12
+^Input Data?C27^ - 2 * (^Bench Analysis?D5^+^Bench Analysis?F5^) / math.tan(^Input Data?C47^) if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+W13
+^Input Data?C27^ - 2 * (^Bench Analysis?D5^+^Bench Analysis?F5^) / math.tan(^Input Data?C47^) if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+W14
+^Input Data?C27^ - 2 * (^Bench Analysis?D5^+^Bench Analysis?F5^) / math.tan(^Input Data?C47^) if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+X5
+(^Bench Analysis?G5^ + ^Bench Analysis?W5^) * ^Bench Analysis?F5^ / 2 if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+X6
+(^Bench Analysis?G5^ + ^Bench Analysis?W5^) * ^Bench Analysis?F5^ / 2 if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+X7
+(^Bench Analysis?G5^ + ^Bench Analysis?W5^) * ^Bench Analysis?F5^ / 2 if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+X8
+(^Bench Analysis?G5^ + ^Bench Analysis?W5^) * ^Bench Analysis?F5^ / 2 if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+X9
+(^Bench Analysis?G5^ + ^Bench Analysis?W5^) * ^Bench Analysis?F5^ / 2 if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+X10
+(^Bench Analysis?G5^ + ^Bench Analysis?W5^) * ^Bench Analysis?F5^ / 2 if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+X11
+(^Bench Analysis?G5^ + ^Bench Analysis?W5^) * ^Bench Analysis?F5^ / 2 if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+X12
+(^Bench Analysis?G5^ + ^Bench Analysis?W5^) * ^Bench Analysis?F5^ / 2 if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+X13
+(^Bench Analysis?G5^ + ^Bench Analysis?W5^) * ^Bench Analysis?F5^ / 2 if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+X14
+(^Bench Analysis?G5^ + ^Bench Analysis?W5^) * ^Bench Analysis?F5^ / 2 if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+Y5
+^Bench Analysis?X5^ * ^Input Data?C28^ if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+Y6
+^Bench Analysis?X5^ * ^Input Data?C28^ if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+Y7
+^Bench Analysis?X5^ * ^Input Data?C28^ if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+Y8
+^Bench Analysis?X5^ * ^Input Data?C28^ if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+Y9
+^Bench Analysis?X5^ * ^Input Data?C28^ if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+Y10
+^Bench Analysis?X5^ * ^Input Data?C28^ if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+Y11
+^Bench Analysis?X5^ * ^Input Data?C28^ if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+Y12
+^Bench Analysis?X5^ * ^Input Data?C28^ if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+Y13
+^Bench Analysis?X5^ * ^Input Data?C28^ if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+Y14
+^Bench Analysis?X5^ * ^Input Data?C28^ if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+Y16
+sum(data['Bench Analysis'][key][0] for key in ['Y5', 'Y6', 'Y7', 'Y8', 'Y9', 'Y10', 'Y11', 'Y12', 'Y13', 'Y14'])
+
+Y17
+^Bench Analysis?Y16^ * ^Input Data?C3^
+
+Z5
+if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+Z6
+if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+Z7
+if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+Z8
+if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+Z9
+if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+Z10
+if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+Z11
+if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+Z12
+if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+Z13
+if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+Z14
+if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+AA5
+if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+AA6
+if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+AA7
+if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+AA8
+if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+AA9
+if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+AA10
+if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+AA11
+if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+AA12
+if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+AA13
+if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+AA14
+if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+AB5
+if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+AB6
+if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+AB7
+if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+AB8
+if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+AB9
+if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+AB10
+if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+AB11
+if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+AB12
+if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+AB13
+if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+AB14
+if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+AC5
+if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+AC6
+if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+AC7
+if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+AC8
+if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+AC9
+if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+AC10
+if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+AC11
+if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+AC12
+if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+AC13
+if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+AC14
+if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+AD5
+if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+AD6
+if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+AD7
+if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+AD8
+if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+AD9
+if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+AD10
+if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+AD11
+if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+AD12
+if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+AD13
+if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+AD14
+if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+AE5
+if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+AE6
+if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+AE7
+if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+AE8
+if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+AE9
+if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+AE10
+if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+AE11
+if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+AE12
+if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+AE13
+if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+AE14
+if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+AF5
+if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+AF6
+if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+AF7
+if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+AF8
+if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+AF9
+if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+AF10
+if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+AF11
+if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+AF12
+if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+AF13
+if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+AF14
+if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+AG5
+if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+AG6
+if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+AG7
+if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+AG8
+if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+AG9
+if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+AG10
+if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+AG11
+if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+AG12
+if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+AG13
+if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+AG14
+if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+AH5
+if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+AH6
+if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+AH7
+if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+AH8
+if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+AH9
+if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+AH10
+if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+AH11
+if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+AH12
+if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+AH13
+if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+AH14
+if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+AI5
+if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+AI6
+if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+AI7
+if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+AI8
+if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+AI9
+if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+AI10
+if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+AI11
+if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+AI12
+if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+AI13
+if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+AI14
+if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+AJ5
+if ^Bench Analysis?B5^ != "n.a." else "n.a."
+
+AJ6
+if ^Bench Analysis?B6^ != "n.a." else "n.a."
+
+AJ7
+if ^Bench Analysis?B7^ != "n.a." else "n.a."
+
+AJ8
+if ^Bench Analysis?B8^ != "n.a." else "n.a."
+
+AJ9
+if ^Bench Analysis?B9^ != "n.a." else "n.a."
+
+AJ10
+if ^Bench Analysis?B10^ != "n.a." else "n.a."
+
+AJ11
+if ^Bench Analysis?B11^ != "n.a." else "n.a."
+
+AJ12
+if ^Bench Analysis?B12^ != "n.a." else "n.a."
+
+AJ13
+if ^Bench Analysis?B13^ != "n.a." else "n.a."
+
+AJ14
+if ^Bench Analysis?B14^ != "n.a." else "n.a."
+
+y
