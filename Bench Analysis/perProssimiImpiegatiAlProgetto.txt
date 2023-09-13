@@ -1,0 +1,20 @@
+PER PROSSIMI IMPIEGATI AL PROGETTO: 
+ - leggere con attenzione per conseguire la fine del secondo software di Bedeschi Programs.
+
+Obiettivo del lavoro assegnato 
+ - sviluppare un software che prenda dati di input, calcoli indipendentemente dei valori su Python e li inserisca in un template Excel. Il tutto si riferisce al file C00000-M00000-ME-CRT-007, pieno di dati di riferimento, mentre BenchAnalysisTemplate è lo stesso file vuoto, ovvero senza dati nè formule.
+
+Lavoro già svolto (vedi bench_analysis.py):
+ - creazione delle strutture che rappresentano i fogli Input Data, Bench Analysis, PRINT
+ - creazione delle funzioni che:
+   * prendono input da file (o da terminale, sconsigliato)
+   * calcola i dati di output
+   * inserisce tutti i dati nel file template
+   * salva il file in una directory a scelta chiedendo con una finestra
+ - parte delle strutture Bench-n, cioè da Bench-1 a Bench-10 (sono tutti identici nella forma)
+
+Lavoro ancora da svolgere:
+ - completare i Bench-n grazie a createBenches.py, dove è già stato in parte completato
+ - verificare la correttezza delle varie strutture, a partire da Input Data (attenzione a errore che porta a iterazione senza fine per calcolare dati non calcolabili al momento)
+ - creare la UI usando come base quella dei due programmi precedenti (aggiungere dropdown scelta del materiale di Input Data)
+ - verificare tutto e creare setup con InnoSetup usando anche license.txt
